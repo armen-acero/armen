@@ -23,7 +23,7 @@ const examples = [
 
 const process = [
   { n: "1", t: "Discover", d: "We map how your business actually runs today and where time and money leak." },
-  { n: "2", t: "Identify", d: "I surface the AI automation opportunities with the highest impact and lowest lift." },
+  { n: "2", t: "Identify", d: "I pinpoint the AI automation opportunities with the highest impact and lowest lift." },
   { n: "3", t: "Demonstrate", d: "You see relevant AI workflows in action, applied to your real use cases." },
   { n: "4", t: "Roadmap", d: "You leave with a prioritised plan: what to build, in what order, with which tools." },
 ];
@@ -33,7 +33,7 @@ const ladder = [
   {
     step: "01",
     name: "AI Opportunity Audit",
-    meta: "60 to 90 minutes · Fixed fee",
+    meta: "60 to 90 minutes · £1,000 fixed fee",
     desc: "Start here. A focused session that turns your processes into a clear, prioritised roadmap, with no big commitment.",
     points: [
       "Review of your current processes",
@@ -178,7 +178,7 @@ const faqs = [
             ["100s of hrs", "wasted every month on automatable work"],
             ["4 areas", "marketing · sales · service · ops"],
             ["90 min", "to a clear, prioritised roadmap"],
-            ["Fixed fee", "low-risk audit, no big commitment"],
+            ["£1,000", "fixed fee · credited to implementation"],
           ].map(([big, small]) => (
             <div class="bg-ink/40 p-5 backdrop-blur">
               <dt class="text-xl font-bold text-white">{big}</dt>
@@ -258,9 +258,16 @@ const faqs = [
               ))
             }
           </ul>
+          <div class="mt-9 flex gap-3 border-t border-slate-200 pt-7">
+            <span class="text-4xl font-extrabold tracking-tight text-ink">£1,000</span>
+            <span class="self-center text-sm leading-snug text-slate-500">
+              fixed fee — and fully <strong class="font-semibold text-ink">credited toward
+              implementation</strong> if you go ahead.
+            </span>
+          </div>
           <a
             href={SITE.bookingUrl}
-            class="mt-9 inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-brand to-brand-bright px-7 py-3.5 text-base font-semibold text-white shadow-xl shadow-brand/20 transition hover:opacity-95"
+            class="mt-6 inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-brand to-brand-bright px-7 py-3.5 text-base font-semibold text-white shadow-xl shadow-brand/20 transition hover:opacity-95"
           >
             Book your audit
             <svg class="h-4 w-4" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
