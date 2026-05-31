@@ -1,0 +1,530 @@
+---
+import Layout from "../layouts/Layout.astro";
+import { SITE } from "../config";
+
+const examples = [
+  {
+    title: "Sales",
+    desc: "Teams spending 10+ hours a week on CRM admin, data entry and follow-ups.",
+  },
+  {
+    title: "Marketing",
+    desc: "Manually repurposing the same content across every channel, by hand.",
+  },
+  {
+    title: "Customer service",
+    desc: "Answering the same repetitive questions over and over, all day.",
+  },
+  {
+    title: "Operations",
+    desc: "Processing documents and shuffling data between systems, one file at a time.",
+  },
+];
+
+const process = [
+  { n: "1", t: "Discover", d: "We map how your business actually runs today and where time and money leak." },
+  { n: "2", t: "Identify", d: "I surface the AI automation opportunities with the highest impact and lowest lift." },
+  { n: "3", t: "Demonstrate", d: "You see relevant AI workflows in action, applied to your real use cases." },
+  { n: "4", t: "Roadmap", d: "You leave with a prioritised plan: what to build, in what order, with which tools." },
+];
+
+// Where the audit can lead: the consulting funnel.
+const ladder = [
+  {
+    step: "01",
+    name: "AI Opportunity Audit",
+    meta: "60 to 90 minutes · Fixed fee",
+    desc: "Start here. A focused session that turns your processes into a clear, prioritised roadmap, with no big commitment.",
+    points: [
+      "Review of your current processes",
+      "Live demo of relevant AI workflows",
+      "Prioritised implementation roadmap",
+    ],
+    featured: true,
+  },
+  {
+    step: "02",
+    name: "AI Automation Workshop",
+    meta: "Half-day · Department-level",
+    desc: "Go deeper with your team to map automation across a whole department and align on what to build first.",
+    points: [
+      "Department-level opportunity mapping",
+      "Workflow design with your team",
+      "Quick-win shortlist + sequencing",
+    ],
+    featured: false,
+  },
+  {
+    step: "03",
+    name: "Implementation Project",
+    meta: "Build phase · Done-for-you",
+    desc: "I build the automations and AI workflows that move the needle, wired into the tools you already use.",
+    points: [
+      "Automations & AI workflows",
+      "CRM integrations & content systems",
+      "Reporting & analytics dashboards",
+    ],
+    featured: false,
+  },
+];
+
+const credibility = [
+  "10+ years helping businesses grow through SEO and digital marketing",
+  "Founder of an independent automation and search consultancy",
+  "Experience across law firms, professional services and growth-focused businesses",
+  "Practical AI implementations, not theoretical consulting",
+];
+
+const faqs = [
+  {
+    q: "What is an AI Opportunity Audit?",
+    a: "A focused 60 to 90 minute session where I review your business processes, identify the highest-impact places to apply AI automation, demonstrate relevant workflows, and hand you a prioritised implementation roadmap.",
+  },
+  {
+    q: "What happens after the audit?",
+    a: "Nothing you're not ready for. Most clients act on the quick wins themselves, then bring me back for a department-level Automation Workshop or a done-for-you Implementation Project. The audit stands on its own, so there's no obligation to go further.",
+  },
+  {
+    q: "Why an audit rather than jumping straight to building?",
+    a: "Because nobody should commit to a large automation project before understanding the opportunities. The audit is low-risk: a fixed fee, a clear roadmap, and the confidence to invest in the right things first.",
+  },
+  {
+    q: "Which parts of my business can be automated?",
+    a: "Marketing, sales, customer service, and operations are the most common. Most companies are wasting hundreds of hours a month on work AI could handle. The audit shows you exactly where.",
+  },
+  {
+    q: "Do you still do SEO and search visibility?",
+    a: "Yes. SEO now sits under the broader umbrella of Search Visibility: being found across Google and AI-driven search. It's part of how I help businesses grow, and a natural extension once your operations are automated.",
+  },
+];
+---
+
+<Layout>
+  <!-- NAV -->
+  <header class="absolute inset-x-0 top-0 z-30">
+    <nav class="mx-auto flex max-w-6xl items-center justify-between px-6 py-5">
+      <a href="#top" class="flex items-center gap-2 text-white">
+        <span
+          class="grid h-8 w-8 place-items-center rounded-lg bg-gradient-to-br from-brand-bright to-accent font-bold text-ink"
+          >{SITE.brand.charAt(0)}</span
+        >
+        <span class="text-lg font-bold tracking-tight">{SITE.brand}</span>
+      </a>
+      <div class="hidden items-center gap-8 text-sm font-medium text-white/70 md:flex">
+        <a href="#audit" class="transition hover:text-white">The Audit</a>
+        <a href="#process" class="transition hover:text-white">Process</a>
+        <a href="#why" class="transition hover:text-white">Why me</a>
+        <a href="#faq" class="transition hover:text-white">FAQ</a>
+      </div>
+      <a
+        href={SITE.bookingUrl}
+        class="rounded-full bg-white px-5 py-2.5 text-sm font-semibold text-ink shadow-lg shadow-black/20 transition hover:bg-white/90"
+        >Book the audit</a
+      >
+    </nav>
+  </header>
+
+  <!-- HERO -->
+  <section id="top" class="glow relative overflow-hidden bg-ink">
+    <div
+      class="absolute inset-0 bg-[linear-gradient(to_bottom,transparent,rgba(10,14,26,0.4),#0a0e1a)]"
+    >
+    </div>
+    <div class="relative mx-auto max-w-6xl px-6 pb-24 pt-36 md:pb-32 md:pt-44">
+      <div class="max-w-3xl animate-fade-up">
+        <span
+          class="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-4 py-1.5 text-xs font-medium text-white/80 backdrop-blur"
+        >
+          <span class="h-1.5 w-1.5 rounded-full bg-accent"></span>
+          AI Opportunity Audit
+        </span>
+        <h1
+          class="mt-6 text-4xl font-extrabold leading-[1.05] tracking-tight text-white sm:text-5xl md:text-6xl"
+        >
+          Most businesses are wasting
+          <span class="gradient-text">hundreds of hours every month</span>
+          on processes AI can automate.
+        </h1>
+        <p class="mt-6 max-w-2xl text-lg leading-relaxed text-white/70">
+          I help companies identify and implement AI automation opportunities
+          across <strong class="font-semibold text-white"
+            >marketing, sales, customer service and operations</strong
+          >. It all starts with a single, low-risk audit.
+        </p>
+        <div class="mt-9 flex flex-col gap-3 sm:flex-row sm:items-center">
+          <a
+            href={SITE.bookingUrl}
+            class="group inline-flex items-center justify-center gap-2 rounded-full bg-gradient-to-r from-brand-bright to-accent px-7 py-3.5 text-base font-semibold text-ink shadow-xl shadow-brand/30 transition hover:opacity-95"
+          >
+            Book your AI Opportunity Audit
+            <svg class="h-4 w-4 transition group-hover:translate-x-0.5" viewBox="0 0 16 16" fill="none"
+              ><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg
+            >
+          </a>
+          <a
+            href="#audit"
+            class="inline-flex items-center justify-center rounded-full border border-white/15 px-7 py-3.5 text-base font-semibold text-white transition hover:bg-white/5"
+            >What's included</a
+          >
+        </div>
+      </div>
+
+      <!-- Stat bar -->
+      <dl
+        class="mt-16 grid max-w-3xl grid-cols-2 gap-px overflow-hidden rounded-2xl border border-white/10 bg-white/5 sm:grid-cols-4"
+      >
+        {
+          [
+            ["100s of hrs", "wasted every month on automatable work"],
+            ["4 areas", "marketing · sales · service · ops"],
+            ["90 min", "to a clear, prioritised roadmap"],
+            ["Fixed fee", "low-risk audit, no big commitment"],
+          ].map(([big, small]) => (
+            <div class="bg-ink/40 p-5 backdrop-blur">
+              <dt class="text-xl font-bold text-white">{big}</dt>
+              <dd class="mt-1 text-xs leading-snug text-white/55">{small}</dd>
+            </div>
+          ))
+        }
+      </dl>
+    </div>
+  </section>
+
+  <!-- LEAD LINE + CONCRETE EXAMPLES -->
+  <section id="opportunities" class="mx-auto max-w-6xl px-6 py-20 md:py-28">
+    <div class="max-w-3xl">
+      <p class="text-sm font-semibold uppercase tracking-widest text-brand">Where to begin</p>
+      <h2 class="mt-3 text-3xl font-bold tracking-tight text-ink sm:text-4xl md:text-5xl">
+        The problem isn't whether AI can help. It's knowing <span class="gradient-text">where to start</span>.
+      </h2>
+      <p class="mt-6 text-lg leading-relaxed text-slate-600">
+        Teams are busy, tools are everywhere, and the best opportunities are
+        buried in day-to-day work. The AI Opportunity Audit makes them visible,
+        and gives you a clear plan to act on.
+      </p>
+    </div>
+
+    <p class="mt-14 text-sm font-semibold uppercase tracking-widest text-slate-400">
+      Typical opportunities we uncover
+    </p>
+    <div class="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+      {
+        examples.map((o) => (
+          <div class="group rounded-2xl border border-slate-200 bg-white p-6 transition hover:border-brand/40 hover:shadow-lg hover:shadow-brand/5">
+            <div class="mb-4 grid h-11 w-11 place-items-center rounded-xl bg-brand/10 text-brand transition group-hover:bg-brand group-hover:text-white">
+              <svg class="h-5 w-5" viewBox="0 0 20 20" fill="none">
+                <path d="M5 11l3 3 7-9" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" />
+              </svg>
+            </div>
+            <h3 class="text-lg font-semibold text-ink">{o.title}</h3>
+            <p class="mt-2 text-sm leading-relaxed text-slate-500">{o.desc}</p>
+          </div>
+        ))
+      }
+    </div>
+  </section>
+
+  <!-- AUDIT DEEP DIVE (the one offer) -->
+  <section id="audit" class="border-y border-slate-200 bg-slate-50 py-20 md:py-28">
+    <div class="mx-auto max-w-6xl px-6">
+      <div class="grid items-center gap-12 lg:grid-cols-2">
+        <div>
+          <p class="text-sm font-semibold uppercase tracking-widest text-brand">The offer</p>
+          <h2 class="mt-3 text-3xl font-bold tracking-tight text-ink md:text-4xl">
+            The AI Opportunity Audit
+          </h2>
+          <p class="mt-5 text-lg leading-relaxed text-slate-600">
+            In a single focused session, you'll go from "we should probably use AI"
+            to a concrete, prioritised plan, built around how your business
+            actually works. Low-risk, fixed-fee, no obligation to go further.
+          </p>
+          <ul class="mt-8 space-y-4">
+            {
+              [
+                "A walkthrough of your current processes, end to end",
+                "The specific automation opportunities hiding in them",
+                "Live demos of the AI workflows most relevant to you",
+                "Tool recommendations matched to your stack and budget",
+                "A prioritised roadmap you can action immediately",
+              ].map((item) => (
+                <li class="flex gap-3.5">
+                  <span class="mt-0.5 grid h-6 w-6 flex-none place-items-center rounded-full bg-brand/10 text-brand">
+                    <svg class="h-3.5 w-3.5" viewBox="0 0 16 16" fill="none">
+                      <path d="M3 8.5l3 3 7-7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                    </svg>
+                  </span>
+                  <span class="text-slate-700">{item}</span>
+                </li>
+              ))
+            }
+          </ul>
+          <a
+            href={SITE.bookingUrl}
+            class="mt-9 inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-brand to-brand-bright px-7 py-3.5 text-base font-semibold text-white shadow-xl shadow-brand/20 transition hover:opacity-95"
+          >
+            Book your audit
+            <svg class="h-4 w-4" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+        </div>
+
+        <div class="relative">
+          <div class="glow absolute -inset-4 rounded-3xl opacity-40 blur-2xl"></div>
+          <div class="relative rounded-3xl border border-slate-200 bg-white p-8 shadow-xl">
+            <p class="text-xs font-semibold uppercase tracking-widest text-slate-400">You walk away with</p>
+            <div class="mt-5 space-y-4">
+              {
+                [
+                  ["Opportunity map", "Every automation candidate, scored by impact and effort."],
+                  ["Prioritised roadmap", "A sequenced plan: what to build first, second, third."],
+                  ["Tool shortlist", "The exact stack to make it happen, no guesswork."],
+                ].map(([t, d], i) => (
+                  <div class="flex gap-4 rounded-xl border border-slate-100 bg-slate-50 p-4">
+                    <span class="grid h-9 w-9 flex-none place-items-center rounded-lg bg-ink text-sm font-bold text-white">
+                      {i + 1}
+                    </span>
+                    <div>
+                      <p class="font-semibold text-ink">{t}</p>
+                      <p class="mt-0.5 text-sm text-slate-500">{d}</p>
+                    </div>
+                  </div>
+                ))
+              }
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROCESS -->
+  <section id="process" class="bg-ink py-20 text-white md:py-28">
+    <div class="mx-auto max-w-6xl px-6">
+      <div class="max-w-2xl">
+        <p class="text-sm font-semibold uppercase tracking-widest text-accent">How the audit works</p>
+        <h2 class="mt-3 text-3xl font-bold tracking-tight md:text-4xl">
+          Four steps to a roadmap you can act on.
+        </h2>
+      </div>
+      <div class="mt-14 grid gap-10 sm:grid-cols-2 lg:grid-cols-4">
+        {
+          process.map((p) => (
+            <div class="group relative">
+              <span class="text-5xl font-extrabold text-white/10 transition-colors duration-200 group-hover:text-white">{p.n}</span>
+              <h3 class="mt-2 text-lg font-semibold text-white">{p.t}</h3>
+              <p class="mt-2 text-sm leading-relaxed text-white/60">{p.d}</p>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <!-- WHERE THE AUDIT LEADS (funnel) -->
+  <section id="services" class="border-b border-slate-200 bg-white py-20 md:py-28">
+    <div class="mx-auto max-w-6xl px-6">
+      <div class="max-w-2xl">
+        <p class="text-sm font-semibold uppercase tracking-widest text-brand">Where it can lead</p>
+        <h2 class="mt-3 text-3xl font-bold tracking-tight text-ink md:text-4xl">
+          Start with an audit. Scale from there.
+        </h2>
+        <p class="mt-5 text-lg leading-relaxed text-slate-600">
+          The audit stands on its own, but when you're ready to build, there's a
+          clear path forward. No pressure, no lock-in.
+        </p>
+      </div>
+
+      <div class="mt-12 grid gap-6 lg:grid-cols-3">
+        {
+          ladder.map((s) => (
+            <article
+              class={`relative flex flex-col rounded-2xl border p-7 transition ${
+                s.featured
+                  ? "border-transparent bg-ink text-white shadow-2xl shadow-brand/20 lg:-mt-4 lg:mb-4"
+                  : "border-slate-200 bg-slate-50 text-ink hover:shadow-lg"
+              }`}
+            >
+              {s.featured && (
+                <span class="absolute right-6 top-7 rounded-full bg-gradient-to-r from-brand-bright to-accent px-3 py-1 text-[11px] font-bold uppercase tracking-wide text-ink">
+                  Start here
+                </span>
+              )}
+              <span class={`text-sm font-bold ${s.featured ? "text-accent" : "text-brand"}`}>
+                {s.step}
+              </span>
+              <h3 class="mt-2 text-xl font-bold">{s.name}</h3>
+              <p class={`mt-1 text-sm font-medium ${s.featured ? "text-white/60" : "text-slate-400"}`}>
+                {s.meta}
+              </p>
+              <p class={`mt-4 text-sm leading-relaxed ${s.featured ? "text-white/75" : "text-slate-500"}`}>
+                {s.desc}
+              </p>
+              <ul class="mt-6 space-y-3 text-sm">
+                {s.points.map((p) => (
+                  <li class="flex gap-3">
+                    <svg class={`mt-0.5 h-4 w-4 flex-none ${s.featured ? "text-accent" : "text-brand"}`} viewBox="0 0 16 16" fill="none">
+                      <path d="M3 8.5l3 3 7-7" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" />
+                    </svg>
+                    <span class={s.featured ? "text-white/80" : "text-slate-600"}>{p}</span>
+                  </li>
+                ))}
+              </ul>
+              <a
+                href={SITE.bookingUrl}
+                class={`mt-7 inline-flex items-center justify-center rounded-full px-5 py-3 text-sm font-semibold transition ${
+                  s.featured
+                    ? "bg-white text-ink hover:bg-white/90"
+                    : "bg-ink text-white hover:bg-ink-soft"
+                }`}
+              >
+                {s.featured ? "Book the audit" : "Enquire"}
+              </a>
+            </article>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <!-- WHY ME (credibility) -->
+  <section id="why" class="mx-auto max-w-6xl px-6 py-20 md:py-28">
+    <div class="grid items-center gap-12 lg:grid-cols-5">
+      <div class="lg:col-span-2">
+        <p class="text-sm font-semibold uppercase tracking-widest text-brand">Why work with me</p>
+        <h2 class="mt-3 text-3xl font-bold tracking-tight text-ink md:text-4xl">
+          A growth background, not an AI bandwagon.
+        </h2>
+        <p class="mt-5 text-lg leading-relaxed text-slate-600">
+          I've spent years solving real growth problems for businesses. AI is
+          simply the most powerful new tool for doing that, applied practically
+          to your actual operations.
+        </p>
+      </div>
+      <div class="lg:col-span-3">
+        <ul class="grid gap-4 sm:grid-cols-2">
+          {
+            credibility.map((c) => (
+              <li class="flex items-start gap-3.5 rounded-2xl border border-slate-200 bg-white p-5">
+                <span class="mt-0.5 grid h-7 w-7 flex-none place-items-center rounded-full bg-brand/10 text-brand">
+                  <svg class="h-4 w-4" viewBox="0 0 16 16" fill="none">
+                    <path d="M3 8.5l3 3 7-7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                  </svg>
+                </span>
+                <span class="text-slate-700">{c}</span>
+              </li>
+            ))
+          }
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- FINAL CTA + BOOKING (Cal.com inline embed) -->
+  <section id="book" class="glow relative overflow-hidden bg-ink py-24 md:py-32">
+    <div class="relative mx-auto max-w-3xl px-6 text-center">
+      <h2 class="text-3xl font-extrabold tracking-tight text-white md:text-5xl">
+        Book your AI Opportunity Audit.
+      </h2>
+      <p class="mx-auto mt-5 max-w-xl text-lg text-white/70">
+        Pick a time that works and confirm in seconds. You'll get a calendar
+        invite by email, then leave the session with a prioritised plan to cut
+        wasted hours across marketing, sales, customer service and operations.
+      </p>
+    </div>
+
+    <div class="relative mx-auto mt-12 max-w-4xl px-6">
+      <div
+        class="overflow-hidden rounded-3xl border border-white/10 bg-white p-2 shadow-2xl shadow-black/40 sm:p-4"
+      >
+        <div
+          id="my-cal-inline"
+          style="width:100%;min-height:640px;overflow:auto"
+        >
+        </div>
+      </div>
+      <p class="mt-4 text-center text-xs text-white/50">
+        Secure scheduling by Cal.com. Prefer email?
+        <a href={`mailto:${SITE.email}`} class="font-medium text-white/80 underline"
+          >Message me instead</a
+        >.
+      </p>
+    </div>
+  </section>
+
+  <script define:vars={{ calLink: SITE.calLink }}>
+    (function (C, A, L) {
+      let p = function (a, ar) { a.q.push(ar); };
+      let d = C.document;
+      C.Cal = C.Cal || function () {
+        let cal = C.Cal; let ar = arguments;
+        if (!cal.loaded) { cal.ns = {}; cal.q = cal.q || []; d.head.appendChild(d.createElement("script")).src = A; cal.loaded = true; }
+        if (ar[0] === L) {
+          const api = function () { p(api, arguments); };
+          const namespace = ar[1];
+          api.q = api.q || [];
+          if (typeof namespace === "string") { cal.ns[namespace] = cal.ns[namespace] || api; p(cal.ns[namespace], ar); p(cal, ["initNamespace", namespace]); }
+          else p(cal, ar);
+          return;
+        }
+        p(cal, ar);
+      };
+    })(window, "https://app.cal.com/embed/embed.js", "init");
+
+    Cal("init", "booking", { origin: "https://app.cal.com" });
+
+    Cal.ns["booking"]("inline", {
+      elementOrSelector: "#my-cal-inline",
+      config: { layout: "month_view", useSlotsViewOnSmallScreen: "true", theme: "light" },
+      calLink: calLink,
+    });
+
+    Cal.ns["booking"]("ui", { hideEventTypeDetails: false, layout: "month_view" });
+  </script>
+
+  <!-- FAQ -->
+  <section id="faq" class="border-t border-slate-200 bg-white py-20 md:py-28">
+    <div class="mx-auto max-w-3xl px-6">
+      <h2 class="text-center text-3xl font-bold tracking-tight text-ink md:text-4xl">
+        Frequently asked questions
+      </h2>
+      <div class="mt-12 space-y-3">
+        {
+          faqs.map((f) => (
+            <details class="group rounded-2xl border border-slate-200 bg-slate-50 p-6 [&_summary::-webkit-details-marker]:hidden">
+              <summary class="flex cursor-pointer items-center justify-between gap-4 text-left font-semibold text-ink">
+                {f.q}
+                <svg class="h-5 w-5 flex-none text-brand transition group-open:rotate-45" viewBox="0 0 20 20" fill="none">
+                  <path d="M10 4v12M4 10h12" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" />
+                </svg>
+              </summary>
+              <p class="mt-4 leading-relaxed text-slate-600">{f.a}</p>
+            </details>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="bg-ink-soft py-12 text-white/60">
+    <div class="mx-auto flex max-w-6xl flex-col items-center justify-between gap-6 px-6 sm:flex-row">
+      <div class="flex items-center gap-2 text-white">
+        <span class="grid h-8 w-8 place-items-center rounded-lg bg-gradient-to-br from-brand-bright to-accent font-bold text-ink">
+          {SITE.brand.charAt(0)}
+        </span>
+        <div>
+          <p class="text-sm font-bold leading-tight">{SITE.brand}</p>
+          <p class="text-xs leading-tight text-white/50">{SITE.role}</p>
+        </div>
+      </div>
+      <nav class="flex gap-6 text-sm">
+        <a href="#audit" class="transition hover:text-white">The Audit</a>
+        <a href="#why" class="transition hover:text-white">Why me</a>
+        <a href="#faq" class="transition hover:text-white">FAQ</a>
+        <a href={`mailto:${SITE.email}`} class="transition hover:text-white">Contact</a>
+      </nav>
+    </div>
+    <p class="mt-8 text-center text-xs text-white/40">
+      © {new Date().getFullYear()} {SITE.brand}. {SITE.location}.
+    </p>
+  </footer>
+</Layout>

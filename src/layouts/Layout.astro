@@ -1,0 +1,128 @@
+---
+import "../styles/global.css";
+import { SITE } from "../config";
+
+interface Props {
+  title?: string;
+  description?: string;
+}
+
+const {
+  title = `${SITE.role} | ${SITE.brand}`,
+  description = `Book an AI Opportunity Audit. In 60 to 90 minutes, identify and prioritise the AI automation opportunities across your marketing, sales, customer service and operations. Walk away with a low-risk roadmap to save hundreds of hours a month.`,
+} = Astro.props;
+
+const canonical = new URL(Astro.url.pathname, Astro.site ?? SITE.url).href;
+const ogImage = new URL("/og.svg", Astro.site ?? SITE.url).href;
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "ProfessionalService",
+      "@id": `${SITE.url}/#service`,
+      name: SITE.brand,
+      description,
+      url: SITE.url,
+      email: SITE.email,
+      areaServed: "Worldwide",
+      serviceType: [
+        "AI Automation Consulting",
+        "Search Visibility Consulting",
+        "SEO Consulting",
+        "Marketing & Sales Automation",
+      ],
+      founder: { "@type": "Person", name: SITE.person, jobTitle: SITE.role },
+      makesOffer: {
+        "@type": "Offer",
+        name: "AI Opportunity Audit",
+        description:
+          "A 60 to 90 minute session that reviews your business processes and maps high-impact AI automation opportunities with a prioritised roadmap.",
+      },
+    },
+    {
+      "@type": "FAQPage",
+      "@id": `${SITE.url}/#faq`,
+      mainEntity: [
+        {
+          "@type": "Question",
+          name: "What is an AI Opportunity Audit?",
+          acceptedAnswer: {
+            "@type": "Answer",
+            text: "A focused 60 to 90 minute session where I review your business processes, identify the highest-impact places to apply AI automation, demonstrate relevant workflows, and hand you a prioritised implementation roadmap.",
+          },
+        },
+        {
+          "@type": "Question",
+          name: "What happens after the audit?",
+          acceptedAnswer: {
+            "@type": "Answer",
+            text: "Nothing you're not ready for. Most clients act on the quick wins themselves, then return for a department-level Automation Workshop or a done-for-you Implementation Project. The audit stands on its own, so there's no obligation to go further.",
+          },
+        },
+        {
+          "@type": "Question",
+          name: "Why an audit rather than jumping straight to building?",
+          acceptedAnswer: {
+            "@type": "Answer",
+            text: "Because nobody should commit to a large automation project before understanding the opportunities. The audit is low-risk: a fixed fee, a clear roadmap, and the confidence to invest in the right things first.",
+          },
+        },
+        {
+          "@type": "Question",
+          name: "Which areas of my business can be automated?",
+          acceptedAnswer: {
+            "@type": "Answer",
+            text: "Marketing, sales, customer service, and operations are the most common. Most companies are wasting hundreds of hours a month on work AI could handle. The audit shows you exactly where.",
+          },
+        },
+      ],
+    },
+  ],
+};
+---
+
+<!doctype html>
+<html lang="en-GB">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="generator" content={Astro.generator} />
+
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+    <meta name="robots" content="index, follow" />
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content={SITE.brand} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content={ogImage} />
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImage} />
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+
+    <script
+      type="application/ld+json"
+      set:html={JSON.stringify(jsonLd)}
+    />
+  </head>
+  <body class="bg-paper text-ink antialiased">
+    <slot />
+  </body>
+</html>
