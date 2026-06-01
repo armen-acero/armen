@@ -51,13 +51,21 @@ const principles = [
   <section id="top" class="glow relative overflow-hidden bg-ink">
     <div class="relative mx-auto max-w-4xl px-6 pb-20 pt-36 md:pb-28 md:pt-44">
       <div class="grid items-center gap-10 md:grid-cols-[auto_1fr] md:gap-12">
-        <div class="mx-auto w-full max-w-[280px] flex-none md:mx-0 md:w-72">
-          <img
-            src="/armen-portrait.jpg"
-            alt="Armen Andonian"
-            loading="eager"
-            class="aspect-[4/5] w-full rounded-3xl object-cover object-center shadow-2xl shadow-black/40 ring-1 ring-white/10"
-          />
+        <div class="relative mx-auto w-full max-w-[300px] flex-none md:mx-0 md:w-80">
+          <div class="glow absolute -inset-8 -z-10 opacity-50 blur-3xl"></div>
+          <div
+            class="relative"
+            style="-webkit-mask-image:linear-gradient(to bottom,#000 60%,transparent 100%);mask-image:linear-gradient(to bottom,#000 60%,transparent 100%)"
+          >
+            <img
+              src="/armen-portrait.jpg"
+              alt="Armen Andonian"
+              loading="eager"
+              class="aspect-[4/5] w-full rounded-3xl object-cover object-center"
+            />
+            <div class="pointer-events-none absolute inset-0 rounded-3xl bg-brand/20 mix-blend-overlay"></div>
+            <div class="pointer-events-none absolute inset-0 rounded-3xl bg-gradient-to-t from-ink via-ink/10 to-transparent"></div>
+          </div>
         </div>
         <div class="text-center md:text-left">
           <p class="text-sm font-semibold uppercase tracking-widest text-accent">About</p>
@@ -114,12 +122,15 @@ const principles = [
     </div>
     </div>
     <figure class="lg:sticky lg:top-24">
-      <img
-        src="/armen-barcelona.jpg"
-        alt="Armen Andonian on a street in Barcelona with his dog"
-        loading="lazy"
-        class="aspect-[4/5] w-full rounded-3xl object-cover object-center shadow-xl ring-1 ring-slate-200"
-      />
+      <div class="relative overflow-hidden rounded-3xl shadow-xl ring-1 ring-slate-200">
+        <img
+          src="/armen-barcelona.jpg"
+          alt="Armen Andonian on a street in Barcelona with his dog"
+          loading="lazy"
+          class="aspect-[4/5] w-full object-cover object-center"
+        />
+        <div class="pointer-events-none absolute inset-0 bg-brand/10 mix-blend-overlay"></div>
+      </div>
       <figcaption class="mt-3 text-center text-sm text-slate-500">
         Barcelona, where it all started, and my co-pilot.
       </figcaption>
