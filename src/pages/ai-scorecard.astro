@@ -159,26 +159,22 @@ const HOURLY_RATE = 25;
 
         <!-- RESULT (hidden until finished) -->
         <div id="result" class="hidden">
-          <p class="text-sm font-semibold uppercase tracking-widest text-brand" id="result-band">High automation potential</p>
+          <p class="text-sm font-semibold uppercase tracking-widest text-brand">Your result is ready</p>
           <h2 class="mt-2 text-2xl font-bold tracking-tight text-ink">
-            You could be reclaiming
-            <span id="result-hours" class="text-brand">120 hours</span>
-            a month.
+            I've worked out how much time and money AI could save you.
           </h2>
-          <p class="mt-3 leading-relaxed text-slate-600" id="result-money">
-            That's roughly <strong class="font-semibold text-ink">£3,000 a month</strong>
-            (about <span class="whitespace-nowrap">£36,000 a year</span>) in time
-            spent on work AI could take off your plate.
-          </p>
-          <p class="mt-2 text-xs text-slate-400">
-            A rough estimate based on your answers, at an assumed £{HOURLY_RATE}/hour of staff time. Your real number is what the audit pins down.
+          <p class="mt-3 leading-relaxed text-slate-600">
+            Based on your answers, I've calculated the hours and money slipping
+            away every month on work AI could handle. Enter your email and I'll
+            send your full breakdown straight over, along with the quick wins most
+            relevant to you.
           </p>
 
           <!-- Email capture gate -->
           <form id="lead-form" class="mt-6 rounded-2xl border border-slate-200 bg-slate-50 p-5">
-            <p class="font-semibold text-ink">Get your full breakdown</p>
+            <p class="font-semibold text-ink">Where should I send your result?</p>
             <p class="mt-1 text-sm text-slate-500">
-              I'll email your scorecard plus a short list of the quick wins most relevant to your answers.
+              Your personalised estimate plus a short list of the quick wins most relevant to your answers.
             </p>
             <div class="mt-4 flex flex-col gap-3 sm:flex-row">
               <input
@@ -193,7 +189,7 @@ const HOURLY_RATE = 25;
                 type="submit"
                 class="inline-flex items-center justify-center gap-2 rounded-full bg-gradient-to-r from-brand to-brand-bright px-6 py-3 text-sm font-semibold text-white shadow-lg shadow-brand/20 transition hover:opacity-95"
               >
-                Send it to me
+                Send my result
               </button>
             </div>
             <p class="mt-2 text-xs text-slate-400">No spam. Unsubscribe anytime.</p>
@@ -346,28 +342,9 @@ const HOURLY_RATE = 25;
         else if (weeklyHrs >= 1) band = "Some automation potential";
         else band = "You're already running lean";
 
-        const fmt = (n) => "£" + n.toLocaleString("en-GB");
-
+        // Keep the result for the email payloads. The numbers are intentionally
+        // NOT shown on screen: the visitor receives them by email.
         resultData = { weeklyHrs, monthlyHrs, monthlyCost, yearlyCost, band };
-
-        document.getElementById("result-band").textContent = band;
-        document.getElementById("result-hours").textContent =
-          `${monthlyHrs} hour${monthlyHrs === 1 ? "" : "s"}`;
-
-        const moneyEl = document.getElementById("result-money");
-        if (monthlyHrs === 0) {
-          document.querySelector("#result h2").innerHTML =
-            "You're already automating most of the repetitive work.";
-          moneyEl.innerHTML =
-            "There may still be edge cases worth catching. The audit is a fast way to confirm you're not leaving anything on the table.";
-        } else {
-          document.querySelector("#result h2").innerHTML =
-            `You could be reclaiming <span class="text-brand">${monthlyHrs} hours</span> a month.`;
-          moneyEl.innerHTML =
-            `That's roughly <strong class="font-semibold text-ink">${fmt(monthlyCost)} a month</strong> ` +
-            `(about <span class="whitespace-nowrap">${fmt(yearlyCost)} a year</span>) in time ` +
-            `spent on work AI could take off your plate.`;
-        }
 
         // swap views
         slot.classList.add("hidden");
