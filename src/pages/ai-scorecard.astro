@@ -16,6 +16,17 @@ const questions = [
     ],
   },
   {
+    // Qualifying question (informational only) — hrs: 0 so it doesn't affect
+    // the hours/cost estimate.
+    id: "claudecode",
+    q: "Have you ever used Claude Code to build systems before?",
+    options: [
+      { label: "No, never used it", hrs: 0 },
+      { label: "A little, just experimenting", hrs: 0 },
+      { label: "Yes, I build with it regularly", hrs: 0 },
+    ],
+  },
+  {
     id: "leads",
     q: "How do you follow up with leads and keep your CRM up to date?",
     options: [
@@ -88,7 +99,7 @@ const HOURLY_RATE = 25;
 
 <Layout
   title={`Free AI Opportunity Scorecard | ${SITE.brand}`}
-  description="Answer 8 quick questions and get an instant estimate of how many hours and how much money your business is losing to work AI could automate. Free, takes 2 minutes."
+  description="Answer 9 quick questions and get an instant estimate of how many hours and how much money your business is losing to work AI could automate. Free, takes 2 minutes."
 >
   <!-- NAV -->
   <header class="absolute inset-x-0 top-0 z-30">
@@ -124,7 +135,7 @@ const HOURLY_RATE = 25;
         The AI Opportunity <span class="gradient-text">Scorecard</span>
       </h1>
       <p class="mx-auto mt-5 max-w-xl text-lg leading-relaxed text-white/70">
-        Answer 8 quick questions about how your business runs. I'll show you
+        Answer 9 quick questions about how your business runs. I'll show you
         roughly how many hours and how much money you're losing to work AI
         could handle, and where to start.
       </p>
