@@ -9,7 +9,7 @@ interface Props {
 
 const {
   title = `${SITE.role} | ${SITE.brand}`,
-  description = `Book an AI Opportunity Audit. In 60 to 90 minutes, identify and prioritise the AI automation opportunities across your marketing, sales, customer service and operations. Walk away with a low-risk roadmap to save hundreds of hours a month.`,
+  description = `Book an AI Opportunity Audit. In 90 minutes, identify and prioritise the AI automation opportunities across your marketing, sales, customer service and operations. Walk away with a low-risk roadmap to save hundreds of hours a month.`,
 } = Astro.props;
 
 const canonical = new URL(Astro.url.pathname, Astro.site ?? SITE.url).href;
@@ -37,7 +37,7 @@ const jsonLd = {
         "@type": "Offer",
         name: "AI Opportunity Audit",
         description:
-          "A 60 to 90 minute session that reviews your business processes and maps high-impact AI automation opportunities with a prioritised roadmap.",
+          "A 90 minute session that reviews your business processes and maps high-impact AI automation opportunities with a prioritised roadmap.",
       },
     },
     {
@@ -49,7 +49,7 @@ const jsonLd = {
           name: "What is an AI Opportunity Audit?",
           acceptedAnswer: {
             "@type": "Answer",
-            text: "A focused 60 to 90 minute session where I review your business processes, identify the highest-impact places to apply AI automation, demonstrate relevant workflows, and hand you a prioritised implementation roadmap.",
+            text: "A focused 90 minute session where I review your business processes, identify the highest-impact places to apply AI automation, demonstrate relevant workflows, and hand you a prioritised implementation roadmap.",
           },
         },
         {
