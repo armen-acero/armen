@@ -18,7 +18,7 @@ export default async function handler(req, res) {
 
   const key = process.env.RESEND_API_KEY;
   if (!key) {
-    // Not configured yet — don't block the visitor's experience.
+    // Not configured yet, so don't block the visitor's experience.
     return res.status(200).json({ ok: false, reason: "email-not-configured" });
   }
 
@@ -92,7 +92,7 @@ export default async function handler(req, res) {
   const text =
     `Hi,\n\nThanks for taking the AI opportunity quiz.\n\n` +
     (hasNumbers
-      ? `Your estimate: around ${monthlyHrs} hours a month — roughly ${fmt(
+      ? `Your estimate: around ${monthlyHrs} hours a month, roughly ${fmt(
           data.monthlyCost
         )} a month (about ${fmt(data.yearlyCost)} a year) on work AI could handle.\n\n`
       : "") +
@@ -122,7 +122,7 @@ export default async function handler(req, res) {
     }
     return res.status(200).json({ ok: true });
   } catch (e) {
-    // Never block the visitor — the Web3Forms notification still reaches you.
+    // Never block the visitor; the Web3Forms notification still reaches you.
     return res.status(200).json({ ok: false, error: String(e) });
   }
 }

@@ -434,7 +434,7 @@ const HOURLY_RATE = 25;
               body: JSON.stringify(payload),
             });
           } catch (_) {
-            /* swallow — show success regardless so the user isn't blocked */
+            /* swallow: show success regardless so the user isn't blocked */
           }
         }
 
@@ -452,7 +452,7 @@ const HOURLY_RATE = 25;
             }),
           });
         } catch (_) {
-          /* swallow — you're still notified via Web3Forms regardless */
+          /* swallow: you're still notified via Web3Forms regardless */
         }
 
         leadForm.classList.add("hidden");
