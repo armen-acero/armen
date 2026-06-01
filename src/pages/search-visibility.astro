@@ -1,0 +1,194 @@
+---
+import Layout from "../layouts/Layout.astro";
+import { SITE } from "../config";
+
+const services = [
+  {
+    title: "Search marketing (SEO)",
+    desc: "Rank where your customers are already looking. Technical fixes, on-page optimisation and the content that earns durable organic traffic, month after month.",
+  },
+  {
+    title: "AI visibility",
+    desc: "Be the name AI recommends. I make sure ChatGPT, Google's AI answers and other assistants surface and cite your business when people ask for what you do.",
+  },
+  {
+    title: "Link building & digital PR",
+    desc: "Earn the authority search engines trust. Genuine, relevant links and press coverage that lift your whole domain, not spammy shortcuts that get penalised.",
+  },
+  {
+    title: "Content strategy",
+    desc: "Turn content into pipeline. The topics, formats and cadence that attract the right people, build trust, and quietly do your selling for you.",
+  },
+];
+
+const points = [
+  "A growth background, not just a checklist of tactics",
+  "Search and AI visibility treated as one job, not two",
+  "Clear reporting tied to leads and revenue, not vanity metrics",
+  "The same automation thinking, so your marketing runs leaner",
+];
+---
+
+<Layout
+  title={`Search & AI Visibility | ${SITE.brand}`}
+  description="Get found by the people, and the AI, looking for you. Search marketing, AI visibility, link building, digital PR and content strategy that brings a steady flow of the right customers."
+>
+  <!-- NAV -->
+  <header class="absolute inset-x-0 top-0 z-30">
+    <nav class="mx-auto flex max-w-6xl items-center justify-between px-6 py-5">
+      <a href="/" class="flex items-center text-white">
+        <img src="/logo.png" alt={SITE.brand} class="h-12 w-auto sm:h-14" />
+      </a>
+      <div class="hidden items-center gap-8 text-sm font-medium text-white/70 md:flex">
+        <a href="/#audit" class="transition hover:text-white">The Audit</a>
+        <a href="/#process" class="transition hover:text-white">Process</a>
+        <a href="/#why" class="transition hover:text-white">Why me</a>
+        <a href="/#faq" class="transition hover:text-white">FAQ</a>
+      </div>
+      <a
+        href="mailto:armen@acero.digital"
+        class="rounded-full bg-white px-5 py-2.5 text-sm font-semibold text-ink shadow-lg shadow-black/20 transition hover:bg-white/90"
+        >Send me a message</a
+      >
+    </nav>
+  </header>
+
+  <!-- HERO -->
+  <section id="top" class="glow relative overflow-hidden bg-ink">
+    <div class="relative mx-auto max-w-4xl px-6 pb-20 pt-36 text-center md:pb-28 md:pt-44">
+      <p class="text-sm font-semibold uppercase tracking-widest text-accent">
+        Search &amp; AI Visibility
+      </p>
+      <h1 class="mt-4 text-4xl font-extrabold leading-tight tracking-tight text-white md:text-6xl">
+        Get found by the people, <span class="gradient-text">and the AI</span>, looking for you.
+      </h1>
+      <p class="mx-auto mt-6 max-w-2xl text-lg leading-relaxed text-white/70">
+        Automation makes your business run leaner. Visibility makes it grow. I help
+        you become the name that gets recommended across Google and AI tools like
+        ChatGPT, so the right customers find you first.
+      </p>
+      <div class="mt-9 flex flex-wrap items-center justify-center gap-4">
+        <a
+          href="mailto:armen@acero.digital"
+          class="inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-brand to-brand-bright px-7 py-3.5 text-base font-semibold text-white shadow-xl shadow-brand/20 transition hover:opacity-95"
+        >
+          Send me a message
+          <svg class="h-4 w-4" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+        <a href="/" class="text-sm font-semibold text-white/70 transition hover:text-white">
+          Or book an AI Opportunity Audit &rarr;
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVICES -->
+  <section class="mx-auto max-w-6xl px-6 py-20 md:py-28">
+    <div class="max-w-2xl">
+      <p class="text-sm font-semibold uppercase tracking-widest text-brand">What I do</p>
+      <h2 class="mt-3 text-3xl font-bold tracking-tight text-ink md:text-4xl">
+        Four levers that make you easier to find and harder to ignore.
+      </h2>
+      <p class="mt-5 text-lg leading-relaxed text-slate-600">
+        They work best together: search and AI visibility get you seen, links and
+        PR build the authority behind it, and content gives all of it something
+        worth ranking.
+      </p>
+    </div>
+    <div class="mt-12 grid gap-4 sm:grid-cols-2">
+      {
+        services.map((s) => (
+          <div class="group rounded-2xl border border-slate-200 bg-white p-7 transition hover:border-brand/40 hover:shadow-lg hover:shadow-brand/5">
+            <div class="mb-4 grid h-11 w-11 place-items-center rounded-xl bg-brand/10 text-brand transition group-hover:bg-brand group-hover:text-white">
+              <svg class="h-5 w-5" viewBox="0 0 20 20" fill="none">
+                <path d="M5 11l3 3 7-9" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" />
+              </svg>
+            </div>
+            <h3 class="text-xl font-semibold text-ink">{s.title}</h3>
+            <p class="mt-2 leading-relaxed text-slate-500">{s.desc}</p>
+          </div>
+        ))
+      }
+    </div>
+  </section>
+
+  <!-- WHY ME -->
+  <section class="border-t border-slate-200 bg-white">
+    <div class="mx-auto max-w-6xl px-6 py-20 md:py-28">
+      <div class="grid items-center gap-12 lg:grid-cols-5">
+        <div class="lg:col-span-2">
+          <p class="text-sm font-semibold uppercase tracking-widest text-brand">Why me</p>
+          <h2 class="mt-3 text-3xl font-bold tracking-tight text-ink md:text-4xl">
+            Visibility that's tied to growth, not guesswork.
+          </h2>
+          <p class="mt-5 text-lg leading-relaxed text-slate-600">
+            I've spent years helping businesses get found and grow. AI has changed
+            where people search, not the fundamentals of earning their trust.
+          </p>
+        </div>
+        <div class="lg:col-span-3">
+          <ul class="grid gap-4 sm:grid-cols-2">
+            {
+              points.map((p) => (
+                <li class="flex items-start gap-3.5 rounded-2xl border border-slate-200 bg-slate-50 p-5">
+                  <span class="mt-0.5 grid h-7 w-7 flex-none place-items-center rounded-full bg-brand/10 text-brand">
+                    <svg class="h-4 w-4" viewBox="0 0 16 16" fill="none">
+                      <path d="M3 8.5l3 3 7-7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                    </svg>
+                  </span>
+                  <span class="text-slate-700">{p}</span>
+                </li>
+              ))
+            }
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="glow relative overflow-hidden bg-ink py-24 md:py-32">
+    <div class="relative mx-auto max-w-3xl px-6 text-center">
+      <h2 class="text-3xl font-extrabold tracking-tight text-white md:text-5xl">
+        Let's get you found.
+      </h2>
+      <p class="mx-auto mt-6 max-w-xl text-lg leading-relaxed text-white/70">
+        Tell me where you want to grow and I'll show you the fastest path to more
+        of the right customers, across search and AI.
+      </p>
+      <div class="mt-9 flex flex-wrap items-center justify-center gap-4">
+        <a
+          href="mailto:armen@acero.digital"
+          class="inline-flex items-center gap-2 rounded-full bg-white px-7 py-3.5 text-base font-semibold text-ink shadow-xl shadow-black/20 transition hover:bg-white/90"
+        >
+          Send me a message
+          <svg class="h-4 w-4" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+        <a href="/" class="text-sm font-semibold text-white/70 transition hover:text-white">
+          Back to home &rarr;
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="bg-ink-soft py-12 text-white/60">
+    <div class="mx-auto flex max-w-6xl flex-col items-center justify-between gap-6 px-6 sm:flex-row">
+      <div class="flex items-center text-white">
+        <div>
+          <img src="/logo.png" alt={SITE.brand} class="h-12 w-auto" />
+          <p class="mt-2 text-xs leading-tight text-white/50">{SITE.role}</p>
+        </div>
+      </div>
+      <nav class="flex gap-6 text-sm">
+        <a href="/#audit" class="transition hover:text-white">The Audit</a>
+        <a href="/search-visibility" class="transition hover:text-white">Search &amp; Visibility</a>
+        <a href="/#faq" class="transition hover:text-white">FAQ</a>
+        <a href="mailto:armen@acero.digital" class="transition hover:text-white">Contact</a>
+      </nav>
+    </div>
+    <p class="mt-8 text-center text-xs text-white/40">
+      © {new Date().getFullYear()} {SITE.brand}. {SITE.location}.
+    </p>
+  </footer>
+</Layout>
