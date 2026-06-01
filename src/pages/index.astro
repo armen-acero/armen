@@ -24,7 +24,7 @@ const examples = [
 const process = [
   { n: "1", t: "Discover", d: "We map how your business actually runs today and where time and money leak." },
   { n: "2", t: "Identify", d: "I pinpoint the AI automation opportunities with the highest impact and lowest lift." },
-  { n: "3", t: "Demonstrate", d: "You see relevant AI workflows in action, applied to your real use cases." },
+  { n: "3", t: "Demonstrate", d: "We automate a small, real process live, so you see exactly what's possible and what you can run yourself." },
   { n: "4", t: "Roadmap", d: "You leave with a prioritised plan: what to build, in what order, with which tools." },
 ];
 
@@ -85,6 +85,10 @@ const faqs = [
     a: "Nothing you're not ready for. Most clients act on the quick wins themselves, then bring me back for a department-level Automation Workshop or a done-for-you Implementation Project. The audit stands on its own, so there's no obligation to go further.",
   },
   {
+    q: "Will you show me how to do this myself?",
+    a: "Yes. A big part of the session is teaching you how to use tools like Claude Code, the same AI I build with. I'll show you how it can write content, handle admin, process documents, automate repetitive tasks and connect your tools together, then we automate a small, real process from your business live, so you leave knowing how to keep building yourself.",
+  },
+  {
     q: "Why an audit rather than jumping straight to building?",
     a: "Because nobody should commit to a large automation project before understanding the opportunities. The audit is low-risk: a fixed fee, a clear roadmap, and the confidence to invest in the right things first.",
   },
@@ -103,12 +107,8 @@ const faqs = [
   <!-- NAV -->
   <header class="absolute inset-x-0 top-0 z-30">
     <nav class="mx-auto flex max-w-6xl items-center justify-between px-6 py-5">
-      <a href="#top" class="flex items-center gap-2 text-white">
-        <span
-          class="grid h-8 w-8 place-items-center rounded-lg bg-gradient-to-br from-brand-bright to-accent font-bold text-ink"
-          >{SITE.brand.charAt(0)}</span
-        >
-        <span class="text-lg font-bold tracking-tight">{SITE.brand}</span>
+      <a href="#top" class="flex items-center text-white">
+        <img src="/logo.png" alt={SITE.brand} class="h-12 w-auto sm:h-14" />
       </a>
       <div class="hidden items-center gap-8 text-sm font-medium text-white/70 md:flex">
         <a href="#audit" class="transition hover:text-white">The Audit</a>
@@ -175,10 +175,10 @@ const faqs = [
       >
         {
           [
-            ["100s of hrs", "wasted every month on automatable work"],
-            ["4 areas", "marketing · sales · service · ops"],
-            ["90 min", "to a clear, prioritised roadmap"],
-            ["£1,000", "fixed fee · credited to implementation"],
+            ["100s of hrs", "Wasted every month on automatable work"],
+            ["4 areas", "Marketing · Sales · Customer Service · Ops"],
+            ["90 min", "For a clear, prioritised roadmap"],
+            ["£1,000", "Fixed fee · Credited to implementation"],
           ].map(([big, small]) => (
             <div class="bg-ink/40 p-5 backdrop-blur">
               <dt class="text-xl font-bold text-white">{big}</dt>
@@ -243,7 +243,8 @@ const faqs = [
               [
                 "A walkthrough of your current processes, end to end",
                 "The specific automation opportunities hiding in them",
-                "Live demos of the AI workflows most relevant to you",
+                "A hands-on look at Claude Code, the AI I build with, and how to use it yourself",
+                "A live build: we use it to automate a small, real process your business needs, right there in the session",
                 "Tool recommendations matched to your stack and budget",
                 "A prioritised roadmap you can action immediately",
               ].map((item) => (
@@ -261,7 +262,7 @@ const faqs = [
           <div class="mt-9 flex gap-3 border-t border-slate-200 pt-7">
             <span class="text-4xl font-extrabold tracking-tight text-ink">£1,000</span>
             <span class="self-center text-sm leading-snug text-slate-500">
-              fixed fee — and fully <strong class="font-semibold text-ink">credited toward
+              fixed fee, and fully <strong class="font-semibold text-ink">credited toward
               implementation</strong> if you go ahead.
             </span>
           </div>
@@ -376,7 +377,7 @@ const faqs = [
                 ))}
               </ul>
               <a
-                href={SITE.bookingUrl}
+                href={s.featured ? SITE.bookingUrl : "mailto:armen@acero.digital"}
                 class={`mt-7 inline-flex items-center justify-center rounded-full px-5 py-3 text-sm font-semibold transition ${
                   s.featured
                     ? "bg-white text-ink hover:bg-white/90"
@@ -396,14 +397,14 @@ const faqs = [
   <section id="why" class="mx-auto max-w-6xl px-6 py-20 md:py-28">
     <div class="grid items-center gap-12 lg:grid-cols-5">
       <div class="lg:col-span-2">
-        <p class="text-sm font-semibold uppercase tracking-widest text-brand">Why work with me</p>
+        <p class="text-sm font-semibold uppercase tracking-widest text-brand">The hidden cost</p>
         <h2 class="mt-3 text-3xl font-bold tracking-tight text-ink md:text-4xl">
-          A growth background, not an AI bandwagon.
+          You're losing hundreds of hours. I'll show you where.
         </h2>
         <p class="mt-5 text-lg leading-relaxed text-slate-600">
-          I've spent years solving real growth problems for businesses. AI is
-          simply the most powerful new tool for doing that, applied practically
-          to your actual operations.
+          Every week, your team repeats work AI could handle: chasing leads,
+          answering the same questions, copying data between tools. I find
+          exactly where it's happening and what it's costing you.
         </p>
       </div>
       <div class="lg:col-span-3">
@@ -514,13 +515,10 @@ const faqs = [
   <!-- FOOTER -->
   <footer class="bg-ink-soft py-12 text-white/60">
     <div class="mx-auto flex max-w-6xl flex-col items-center justify-between gap-6 px-6 sm:flex-row">
-      <div class="flex items-center gap-2 text-white">
-        <span class="grid h-8 w-8 place-items-center rounded-lg bg-gradient-to-br from-brand-bright to-accent font-bold text-ink">
-          {SITE.brand.charAt(0)}
-        </span>
+      <div class="flex items-center text-white">
         <div>
-          <p class="text-sm font-bold leading-tight">{SITE.brand}</p>
-          <p class="text-xs leading-tight text-white/50">{SITE.role}</p>
+          <img src="/logo.png" alt={SITE.brand} class="h-12 w-auto" />
+          <p class="mt-2 text-xs leading-tight text-white/50">{SITE.role}</p>
         </div>
       </div>
       <nav class="flex gap-6 text-sm">
@@ -534,4 +532,31 @@ const faqs = [
       © {new Date().getFullYear()} {SITE.brand}. {SITE.location}.
     </p>
   </footer>
+
+  <!-- Back to top -->
+  <a
+    href="#top"
+    id="back-to-top"
+    aria-label="Back to top"
+    class="pointer-events-none fixed bottom-6 right-6 z-50 grid h-12 w-12 place-items-center rounded-full bg-brand text-white opacity-0 shadow-lg shadow-brand/30 transition hover:bg-brand-bright translate-y-2"
+  >
+    <svg class="h-5 w-5" viewBox="0 0 20 20" fill="none">
+      <path d="M10 16V5M5 10l5-5 5 5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" />
+    </svg>
+  </a>
+
+  <script is:inline>
+    (() => {
+      const btn = document.getElementById("back-to-top");
+      if (!btn) return;
+      const toggle = () => {
+        const show = window.scrollY > 600;
+        btn.classList.toggle("opacity-0", !show);
+        btn.classList.toggle("pointer-events-none", !show);
+        btn.classList.toggle("translate-y-2", !show);
+      };
+      toggle();
+      window.addEventListener("scroll", toggle, { passive: true });
+    })();
+  </script>
 </Layout>
