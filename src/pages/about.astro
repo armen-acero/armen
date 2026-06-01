@@ -50,11 +50,14 @@ const principles = [
   <!-- HERO -->
   <section id="top" class="glow relative overflow-hidden bg-ink">
     <div class="relative mx-auto max-w-4xl px-6 pb-20 pt-36 md:pb-28 md:pt-44">
-      <div class="grid items-center gap-10 md:grid-cols-[auto,1fr] md:gap-12">
-        <div
-          class="mx-auto grid h-28 w-28 flex-none place-items-center rounded-3xl bg-gradient-to-br from-brand to-brand-bright text-4xl font-extrabold text-white shadow-2xl shadow-brand/30 md:mx-0 md:h-32 md:w-32 md:text-5xl"
-        >
-          AA
+      <div class="grid items-center gap-10 md:grid-cols-[auto_1fr] md:gap-12">
+        <div class="mx-auto w-full max-w-[280px] flex-none md:mx-0 md:w-72">
+          <img
+            src="/armen-portrait.jpg"
+            alt="Armen Andonian"
+            loading="eager"
+            class="aspect-[4/5] w-full rounded-3xl object-cover object-center shadow-2xl shadow-black/40 ring-1 ring-white/10"
+          />
         </div>
         <div class="text-center md:text-left">
           <p class="text-sm font-semibold uppercase tracking-widest text-accent">About</p>
@@ -74,7 +77,9 @@ const principles = [
   </section>
 
   <!-- STORY -->
-  <section class="mx-auto max-w-3xl px-6 py-20 md:py-28">
+  <section class="mx-auto max-w-6xl px-6 py-20 md:py-28">
+   <div class="grid gap-12 lg:grid-cols-[1.5fr_1fr] lg:items-start lg:gap-16">
+    <div>
     <p class="text-sm font-semibold uppercase tracking-widest text-brand">My story</p>
     <div class="mt-6 space-y-6 text-lg leading-relaxed text-slate-700">
       <p>
@@ -107,6 +112,19 @@ const principles = [
         simple, low-risk audit rather than a big commitment.
       </p>
     </div>
+    </div>
+    <figure class="lg:sticky lg:top-24">
+      <img
+        src="/armen-barcelona.jpg"
+        alt="Armen Andonian on a street in Barcelona with his dog"
+        loading="lazy"
+        class="aspect-[4/5] w-full rounded-3xl object-cover object-center shadow-xl ring-1 ring-slate-200"
+      />
+      <figcaption class="mt-3 text-center text-sm text-slate-500">
+        Barcelona, where it all started, and my co-pilot.
+      </figcaption>
+    </figure>
+   </div>
   </section>
 
   <!-- PRINCIPLES -->
