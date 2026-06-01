@@ -1,0 +1,293 @@
+---
+import Layout from "../layouts/Layout.astro";
+import { SITE } from "../config";
+
+// 10 concrete, buildable automations — each one a real outcome a business could
+// have running within a day, plus a kick-off prompt to get started. This is the
+// lead magnet: it proves what Claude Code can actually *build*, not just chat.
+const builds = [
+  {
+    title: "A document data extractor",
+    time: "An afternoon",
+    who: "Finance, legal, operations",
+    desc: "Drop a folder of invoices, contracts or intake forms and get every key field, dates, amounts, parties, terms, pulled into one clean spreadsheet. No more re-keying by hand.",
+    prompt: "Read every PDF in this folder. For each one, extract the supplier, invoice number, date, total and VAT, and add a row to a spreadsheet. Flag anything where a field is missing.",
+  },
+  {
+    title: "An inbox triage assistant",
+    time: "A few hours",
+    who: "Anyone drowning in email",
+    desc: "Sorts incoming email, drafts replies to the routine ones in your tone, and flags only what genuinely needs you, so you start the day with a handled inbox instead of a full one.",
+    prompt: "Go through these emails. Label each as 'reply needed today', 'FYI' or 'can wait'. For the first group, draft a short reply in my voice using these past emails as a style guide: [paste].",
+  },
+  {
+    title: "A 'chat with your documents' assistant",
+    time: "An afternoon",
+    who: "Law firms, consultancies, ops teams",
+    desc: "Point it at your contracts, policies or SOPs and ask questions in plain English, get back a clear answer with the exact clause it came from. Turns a filing cabinet into something you can just ask.",
+    prompt: "Index every document in this folder. When I ask a question, answer in plain English and quote the exact section you used, with the file name. First question: what's our standard notice period across these contracts?",
+  },
+  {
+    title: "A lead intake and qualifier",
+    time: "A day",
+    who: "Sales and marketing",
+    desc: "Every web enquiry gets scored against your ideal-client criteria, a tailored first reply drafted, and the details logged, within minutes, day or night. Hot leads never go cold waiting.",
+    prompt: "When a new enquiry comes in with these fields, score it 1 to 5 against my ideal client (criteria: [paste]), draft a personalised first reply, and add a row to my leads sheet with the score and reasoning.",
+  },
+  {
+    title: "A content repurposing pipeline",
+    time: "A few hours",
+    who: "Founders and marketers",
+    desc: "One blog post, podcast or video transcript becomes a week of LinkedIn posts, short captions and a newsletter, all in your voice, in a single run. Create once, publish everywhere.",
+    prompt: "Take this article and turn it into 5 LinkedIn posts, 5 short captions and a 200-word newsletter, all in my brand voice (examples: [paste]). Keep each one able to stand on its own.",
+  },
+  {
+    title: "An automated weekly report",
+    time: "A few hours",
+    who: "Owners and managers",
+    desc: "Pulls the numbers from your exports or spreadsheets, writes a plain-English summary of what changed and why it matters, and emails it to the team every Monday morning, without you lifting a finger.",
+    prompt: "Every Monday, read this sales export, compare it to last week, and write a short plain-English summary: what's up, what's down, and the one thing to pay attention to. Then format it as an email to my team.",
+  },
+  {
+    title: "A proposal and quote drafter",
+    time: "An afternoon",
+    who: "Agencies and service businesses",
+    desc: "Fill in a short brief and get a branded proposal built from your own templates, scoped, priced and ready to review, in minutes instead of an evening.",
+    prompt: "Using my proposal template and these past examples, turn this short brief into a full draft proposal with scope, deliverables, timeline and pricing. Leave clear placeholders for anything you're unsure about.",
+  },
+  {
+    title: "A review and testimonial engine",
+    time: "A few hours",
+    who: "Local and client-facing businesses",
+    desc: "Drafts personalised, on-brand replies to your Google reviews and turns your best ones into case studies and ready-to-post social content. Your reputation, working for you on autopilot.",
+    prompt: "Draft a warm, personalised reply to each of these reviews in my brand voice. Then take the 3 most positive and turn each into a short case study with a headline and three result bullets.",
+  },
+  {
+    title: "A meeting-to-action system",
+    time: "A few hours",
+    who: "Sales and client teams",
+    desc: "Drop in a call recording or transcript and get a tidy summary, the prospect's main objection, next steps with owners and dates, a drafted follow-up email, and clean notes for your CRM.",
+    prompt: "From this call transcript, give me: a 3-line summary, the main objection and how to handle it, next steps with dates, a drafted follow-up email, and a 2-sentence CRM note in past tense.",
+  },
+  {
+    title: "A small internal tool",
+    time: "A day",
+    who: "Any team with a recurring nuisance",
+    desc: "A booking-confirmation flow, a reminder bot, or a simple dashboard that pings you the moment something needs attention. The 'I didn't realise I could just build that' moment that changes how you see your week.",
+    prompt: "I keep forgetting to chase [recurring task]. Build me something simple that checks for it and sends me a reminder with the details when it's due. Walk me through running it myself.",
+  },
+];
+---
+
+<Layout
+  title={`10 Things You Can Build With Claude Code in 24 Hours | ${SITE.brand}`}
+  description="Ten real automations you could have running in your business within a day using Claude Code, from a document extractor to an inbox assistant. Each with a kick-off prompt. Free."
+>
+  <!-- NAV -->
+  <header class="absolute inset-x-0 top-0 z-30">
+    <nav class="mx-auto flex max-w-6xl items-center justify-between px-6 py-5">
+      <a href="/" class="flex items-center text-white">
+        <img src="/logo.png" alt={SITE.brand} class="h-12 w-auto sm:h-14" />
+      </a>
+      <div class="hidden items-center gap-8 text-sm font-medium text-white/70 md:flex">
+        <a href="/#audit" class="transition hover:text-white">The Audit</a>
+        <a href="/#process" class="transition hover:text-white">Process</a>
+        <a href="/search-visibility" class="transition hover:text-white">Search Visibility</a>
+        <a href="/#faq" class="transition hover:text-white">FAQ</a>
+      </div>
+      <a
+        href={SITE.bookingUrl}
+        class="rounded-full bg-white px-5 py-2.5 text-sm font-semibold text-ink shadow-lg shadow-black/20 transition hover:bg-white/90"
+        >Book the audit</a
+      >
+    </nav>
+  </header>
+
+  <!-- HERO -->
+  <section id="top" class="glow relative overflow-hidden bg-ink">
+    <div class="relative mx-auto max-w-3xl px-6 pb-20 pt-36 text-center md:pb-24 md:pt-44">
+      <span
+        class="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-4 py-1.5 text-xs font-medium text-white/80 backdrop-blur"
+      >
+        <span class="h-1.5 w-1.5 rounded-full bg-accent"></span>
+        Free guide
+      </span>
+      <h1 class="mt-6 text-4xl font-extrabold leading-[1.05] tracking-tight text-white sm:text-5xl">
+        10 things you can build with <span class="gradient-text">Claude Code in 24 hours</span>
+      </h1>
+      <p class="mx-auto mt-5 max-w-xl text-lg leading-relaxed text-white/70">
+        Claude Code doesn't just chat, it builds. These are ten real tools you
+        could have running in your business by tomorrow. Each comes with a
+        kick-off prompt to get you started today.
+      </p>
+
+      <!-- email capture (soft) -->
+      <form id="lead-form" class="mx-auto mt-9 max-w-md rounded-2xl border border-white/10 bg-white/5 p-5 text-left backdrop-blur">
+        <p class="text-sm font-semibold text-white">Want the build guides as I publish them?</p>
+        <div class="mt-3 flex flex-col gap-3 sm:flex-row">
+          <input
+            id="email-input"
+            name="email_address"
+            type="email"
+            required
+            placeholder="you@company.com"
+            class="w-full flex-1 rounded-full border border-white/15 bg-ink/40 px-5 py-3 text-sm text-white placeholder-white/40 outline-none transition focus:border-accent focus:ring-2 focus:ring-accent/20"
+          />
+          <button
+            type="submit"
+            class="inline-flex items-center justify-center rounded-full bg-gradient-to-r from-brand-bright to-accent px-6 py-3 text-sm font-semibold text-ink transition hover:opacity-95"
+          >
+            Notify me
+          </button>
+        </div>
+        <p id="lead-success" class="mt-2 hidden text-xs text-accent">Thanks — you're on the list.</p>
+        <p id="lead-hint" class="mt-2 text-xs text-white/40">No spam. Unsubscribe anytime.</p>
+      </form>
+    </div>
+  </section>
+
+  <!-- WHAT IS CLAUDE CODE (quick framing) -->
+  <section class="mx-auto max-w-3xl px-6 pt-16 md:pt-20">
+    <div class="rounded-2xl border border-slate-200 bg-slate-50 p-6 md:p-8">
+      <p class="text-sm font-semibold uppercase tracking-widest text-brand">First, the short version</p>
+      <p class="mt-3 leading-relaxed text-slate-600">
+        Claude Code is an AI you can point at your actual files, tools and tasks,
+        and it does the work: reads documents, writes and runs the automation, and
+        connects the apps you already use. You describe the outcome in plain
+        English; it builds the thing. Below are ten outcomes worth building first.
+      </p>
+    </div>
+  </section>
+
+  <!-- BUILDS -->
+  <section class="mx-auto max-w-3xl px-6 py-14 md:py-20">
+    <div class="space-y-5">
+      {
+        builds.map((b, i) => (
+          <article class="rounded-2xl border border-slate-200 bg-white p-6 transition hover:border-brand/40 hover:shadow-lg hover:shadow-brand/5 md:p-7">
+            <div class="flex items-start gap-4">
+              <span class="grid h-9 w-9 flex-none place-items-center rounded-lg bg-ink text-sm font-bold text-white">
+                {i + 1}
+              </span>
+              <div class="flex-1">
+                <div class="flex flex-wrap items-center gap-x-3 gap-y-1">
+                  <h2 class="text-xl font-bold text-ink">{b.title}</h2>
+                  <span class="inline-flex items-center gap-1.5 rounded-full bg-brand/10 px-2.5 py-1 text-xs font-semibold text-brand">
+                    <svg class="h-3 w-3" viewBox="0 0 16 16" fill="none"><path d="M8 4v4l2.5 1.5M14 8A6 6 0 112 8a6 6 0 0112 0z" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                    {b.time}
+                  </span>
+                </div>
+                <p class="mt-1 text-xs font-medium uppercase tracking-wide text-slate-400">For: {b.who}</p>
+                <p class="mt-3 leading-relaxed text-slate-600">{b.desc}</p>
+
+                <div class="mt-4 rounded-xl border border-slate-100 bg-slate-50 p-4">
+                  <div class="flex items-center justify-between gap-3">
+                    <p class="text-xs font-semibold uppercase tracking-wide text-slate-400">Kick-off prompt</p>
+                    <button
+                      type="button"
+                      class="copy-btn flex-none rounded-full border border-slate-200 bg-white px-3 py-1 text-xs font-semibold text-slate-500 transition hover:border-brand/40 hover:text-brand"
+                      aria-label="Copy prompt"
+                    >Copy</button>
+                  </div>
+                  <p class="prompt-text mt-2 text-sm leading-relaxed text-slate-700">{b.prompt}</p>
+                </div>
+              </div>
+            </div>
+          </article>
+        ))
+      }
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="glow relative overflow-hidden bg-ink py-24 md:py-32">
+    <div class="relative mx-auto max-w-3xl px-6 text-center">
+      <h2 class="text-3xl font-extrabold tracking-tight text-white md:text-5xl">
+        Want one of these <span class="gradient-text">built for you?</span>
+      </h2>
+      <p class="mx-auto mt-6 max-w-xl text-lg leading-relaxed text-white/70">
+        In the AI Opportunity Audit we find the highest-impact thing to build,
+        build one live in the session, and you leave knowing how to keep going yourself.
+      </p>
+      <div class="mt-9 flex flex-wrap items-center justify-center gap-4">
+        <a
+          href={SITE.bookingUrl}
+          class="inline-flex items-center gap-2 rounded-full bg-white px-7 py-3.5 text-base font-semibold text-ink shadow-xl shadow-black/20 transition hover:bg-white/90"
+        >
+          Book your AI Opportunity Audit
+          <svg class="h-4 w-4" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+        <a href="/ai-scorecard" class="text-sm font-semibold text-white/70 transition hover:text-white">
+          Or take the free Scorecard &rarr;
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="bg-ink-soft py-12 text-white/60">
+    <div class="mx-auto flex max-w-6xl flex-col items-center justify-between gap-6 px-6 sm:flex-row">
+      <div class="flex items-center text-white">
+        <div>
+          <img src="/logo.png" alt={SITE.brand} class="h-12 w-auto" />
+          <p class="mt-2 text-xs leading-tight text-white/50">{SITE.role}</p>
+        </div>
+      </div>
+      <nav class="flex gap-6 text-sm">
+        <a href="/#audit" class="transition hover:text-white">The Audit</a>
+        <a href="/ai-scorecard" class="transition hover:text-white">Scorecard</a>
+        <a href="/search-visibility" class="transition hover:text-white">Search &amp; Visibility</a>
+        <a href={`mailto:${SITE.email}`} class="transition hover:text-white">Contact</a>
+      </nav>
+    </div>
+    <p class="mt-8 text-center text-xs text-white/40">
+      © {new Date().getFullYear()} {SITE.brand}. {SITE.location}.
+    </p>
+  </footer>
+
+  <script define:vars={{ formAction: SITE.emailFormAction }}>
+    // Copy buttons
+    document.querySelectorAll(".copy-btn").forEach((btn) => {
+      btn.addEventListener("click", async () => {
+        const text = btn.closest("article").querySelector(".prompt-text").textContent.trim();
+        try {
+          await navigator.clipboard.writeText(text);
+        } catch (_) {
+          const ta = document.createElement("textarea");
+          ta.value = text;
+          document.body.appendChild(ta);
+          ta.select();
+          document.execCommand("copy");
+          document.body.removeChild(ta);
+        }
+        const original = btn.textContent;
+        btn.textContent = "Copied";
+        btn.classList.add("text-brand", "border-brand/40");
+        setTimeout(() => {
+          btn.textContent = original;
+          btn.classList.remove("text-brand", "border-brand/40");
+        }, 1500);
+      });
+    });
+
+    // Soft email capture
+    const leadForm = document.getElementById("lead-form");
+    if (leadForm) {
+      leadForm.addEventListener("submit", async (e) => {
+        e.preventDefault();
+        const email = document.getElementById("email-input").value.trim();
+        if (!email) return;
+        if (formAction) {
+          try {
+            const fd = new FormData();
+            fd.append("email_address", email);
+            await fetch(formAction, { method: "POST", body: fd, mode: "no-cors" });
+          } catch (_) {}
+        }
+        document.getElementById("email-input").value = "";
+        document.getElementById("lead-hint").classList.add("hidden");
+        document.getElementById("lead-success").classList.remove("hidden");
+      });
+    }
+  </script>
+</Layout>
