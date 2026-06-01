@@ -98,7 +98,7 @@ const faqs = [
   },
   {
     q: "What other services do you offer?",
-    a: 'Automation is one half of how I help businesses grow; getting found is the other. I work on <a href="/search-visibility" class="font-semibold text-brand underline hover:text-brand-bright">search and AI visibility</a>, so you\'re the name recommended across Google and AI tools like ChatGPT, backed by link building and digital PR to build your authority, and a content strategy that earns lasting traffic and trust. Together they bring you a steady flow of the right customers. <a href="mailto:armen@acero.digital" class="font-semibold text-brand underline hover:text-brand-bright">Send me a message</a> to talk it through.',
+    a: 'Automation is one half of how I help businesses grow; getting found is the other. I work on <a href="/search-visibility" class="font-semibold text-brand underline hover:text-brand-bright">search and AI visibility</a>, so you\'re the name recommended across Google and AI tools like ChatGPT, backed by link building and digital PR to build your authority, and a content strategy that earns lasting traffic and trust. Together they bring you a steady flow of the right customers. <a href="/contact" class="font-semibold text-brand underline hover:text-brand-bright">Send me a message</a> to talk it through.',
   },
 ];
 ---
@@ -460,7 +460,7 @@ const faqs = [
                 ))}
               </ul>
               <a
-                href={s.featured ? SITE.bookingUrl : "mailto:armen@acero.digital"}
+                href={s.featured ? SITE.bookingUrl : "/contact"}
                 class={`mt-7 inline-flex items-center justify-center rounded-full px-5 py-3 text-sm font-semibold transition ${
                   s.featured
                     ? "bg-white text-ink hover:bg-white/90"
@@ -534,7 +534,7 @@ const faqs = [
       </div>
       <p class="mt-4 text-center text-xs text-white/50">
         Secure scheduling by Cal.com. Prefer email?
-        <a href={`mailto:${SITE.email}`} class="font-medium text-white/80 underline"
+        <a href="/contact" class="font-medium text-white/80 underline"
           >Message me instead</a
         >.
       </p>
@@ -608,7 +608,7 @@ const faqs = [
         <a href="#audit" class="transition hover:text-white">The Audit</a>
         <a href="#why" class="transition hover:text-white">Why me</a>
         <a href="#faq" class="transition hover:text-white">FAQ</a>
-        <a href={`mailto:${SITE.email}`} class="transition hover:text-white">Contact</a>
+        <a href="/contact" class="transition hover:text-white">Contact</a>
       </nav>
     </div>
     <p class="mt-8 text-center text-xs text-white/40">
