@@ -1,0 +1,216 @@
+---
+import Layout from "../layouts/Layout.astro";
+import { SITE } from "../config";
+
+const principles = [
+  {
+    title: "Show, don't gatekeep",
+    body: "I'd rather teach you to fish. A big part of every engagement is putting the tools in your hands, so the capability stays with your team long after I'm gone.",
+  },
+  {
+    title: "Low risk, high clarity",
+    body: "No one should commit to a big build before they understand the opportunity. I start small, prove the value on a real process, then we scale what works.",
+  },
+  {
+    title: "Practical, not theoretical",
+    body: "I build the automations live, wired into the tools you already use. You leave with working systems and a clear roadmap, not a slide deck.",
+  },
+  {
+    title: "One person, fully accountable",
+    body: "You work directly with me, start to finish. No account managers, no handoffs, no junior team learning on your budget.",
+  },
+];
+---
+
+<Layout
+  title={`About | ${SITE.brand}`}
+  description="Meet Armen Andonian, an AI automation and search visibility consultant with 10+ years in SEO and digital marketing. I help businesses automate the work draining their hours and get found by the customers and AI tools searching for them."
+>
+  <!-- NAV -->
+  <header class="absolute inset-x-0 top-0 z-30">
+    <nav class="mx-auto flex max-w-6xl items-center justify-between px-6 py-5">
+      <a href="/" class="flex items-center text-white">
+        <img src="/logo.png" alt={SITE.brand} class="h-12 w-auto sm:h-14" />
+      </a>
+      <div class="hidden items-center gap-8 text-sm font-medium text-white/70 md:flex">
+        <a href="/#audit" class="transition hover:text-white">The Audit</a>
+        <a href="/#process" class="transition hover:text-white">Process</a>
+        <a href="/search-visibility" class="transition hover:text-white">Search &amp; Visibility</a>
+        <a href="/about" class="text-white">About</a>
+        <a href="/contact" class="transition hover:text-white">Contact</a>
+      </div>
+      <a
+        href={SITE.bookingUrl.startsWith("#") ? `/${SITE.bookingUrl}` : SITE.bookingUrl}
+        class="rounded-full bg-white px-5 py-2.5 text-sm font-semibold text-ink shadow-lg shadow-black/20 transition hover:bg-white/90"
+        >Book the audit</a
+      >
+    </nav>
+  </header>
+
+  <!-- HERO -->
+  <section id="top" class="glow relative overflow-hidden bg-ink">
+    <div class="relative mx-auto max-w-4xl px-6 pb-20 pt-36 md:pb-28 md:pt-44">
+      <div class="grid items-center gap-10 md:grid-cols-[auto,1fr] md:gap-12">
+        <div
+          class="mx-auto grid h-28 w-28 flex-none place-items-center rounded-3xl bg-gradient-to-br from-brand to-brand-bright text-4xl font-extrabold text-white shadow-2xl shadow-brand/30 md:mx-0 md:h-32 md:w-32 md:text-5xl"
+        >
+          AA
+        </div>
+        <div class="text-center md:text-left">
+          <p class="text-sm font-semibold uppercase tracking-widest text-accent">About</p>
+          <h1 class="mt-4 text-4xl font-extrabold leading-tight tracking-tight text-white md:text-6xl">
+            Hi, I'm <span class="gradient-text">Armen</span>.
+          </h1>
+          <p class="mx-auto mt-6 max-w-xl text-lg leading-relaxed text-white/70 md:mx-0">
+            I help businesses automate the work that's quietly draining their
+            hours, and get found by the customers and AI tools searching for
+            them. More than ten years in search and digital marketing, now spent
+            building practical AI systems that pay for themselves.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- STORY -->
+  <section class="mx-auto max-w-3xl px-6 py-20 md:py-28">
+    <p class="text-sm font-semibold uppercase tracking-widest text-brand">My story</p>
+    <div class="mt-6 space-y-6 text-lg leading-relaxed text-slate-700">
+      <p>
+        I've spent the last decade helping companies grow online, first through
+        SEO and digital marketing, running live search campaigns for law firms,
+        professional services and growth-focused businesses. The thread through
+        all of it has been the same: finding where a business is leaking time and
+        opportunity, and fixing it.
+      </p>
+      <p>
+        When a new generation of AI tools arrived, it was obvious they changed
+        the game. Suddenly the repetitive work that ate whole afternoons,
+        chasing leads, answering the same questions, moving data between tools,
+        writing the first draft of everything, could be handled in minutes. So I
+        moved my focus to building those systems for real businesses, and founded
+        an independent automation and search consultancy to do it.
+      </p>
+      <p>
+        Today I build with Claude Code, the same AI I'll teach you to use. I
+        don't believe in handing clients a black box. The most valuable thing I
+        can leave behind isn't a finished automation, it's the confidence and the
+        know-how to keep building yourself. That's why every engagement starts
+        with a simple, low-risk audit rather than a big commitment.
+      </p>
+    </div>
+  </section>
+
+  <!-- PRINCIPLES -->
+  <section class="bg-paper">
+    <div class="mx-auto max-w-6xl px-6 py-20 md:py-28">
+      <div class="max-w-2xl">
+        <p class="text-sm font-semibold uppercase tracking-widest text-brand">How I work</p>
+        <h2 class="mt-3 text-3xl font-bold tracking-tight text-ink md:text-4xl">
+          A few things I believe.
+        </h2>
+      </div>
+      <div class="mt-12 grid gap-5 sm:grid-cols-2">
+        {
+          principles.map((p) => (
+            <div class="rounded-3xl border border-slate-200 bg-white p-7 shadow-sm">
+              <h3 class="text-lg font-bold text-ink">{p.title}</h3>
+              <p class="mt-3 leading-relaxed text-slate-600">{p.body}</p>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <!-- WHAT I DO -->
+  <section class="mx-auto max-w-6xl px-6 py-20 md:py-28">
+    <div class="max-w-2xl">
+      <p class="text-sm font-semibold uppercase tracking-widest text-brand">What I do</p>
+      <h2 class="mt-3 text-3xl font-bold tracking-tight text-ink md:text-4xl">
+        Two ways I help businesses grow.
+      </h2>
+    </div>
+    <div class="mt-12 grid gap-6 lg:grid-cols-2">
+      <a
+        href="/#audit"
+        class="group rounded-3xl border border-slate-200 bg-white p-8 shadow-sm transition hover:border-brand/40 hover:shadow-xl"
+      >
+        <h3 class="text-xl font-bold text-ink">AI automation</h3>
+        <p class="mt-3 leading-relaxed text-slate-600">
+          I find the work AI could be handling across your marketing, sales,
+          customer service and operations, then build the systems to take it off
+          your plate. It all starts with the AI Opportunity Audit.
+        </p>
+        <span class="mt-5 inline-flex items-center gap-2 text-sm font-semibold text-brand">
+          See the audit
+          <svg class="h-4 w-4 transition group-hover:translate-x-0.5" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </span>
+      </a>
+      <a
+        href="/search-visibility"
+        class="group rounded-3xl border border-slate-200 bg-white p-8 shadow-sm transition hover:border-brand/40 hover:shadow-xl"
+      >
+        <h3 class="text-xl font-bold text-ink">Search &amp; AI visibility</h3>
+        <p class="mt-3 leading-relaxed text-slate-600">
+          I make sure you're the name recommended across Google and AI tools like
+          ChatGPT, backed by link building, digital PR and a content strategy
+          that earns lasting traffic and trust.
+        </p>
+        <span class="mt-5 inline-flex items-center gap-2 text-sm font-semibold text-brand">
+          Explore search &amp; visibility
+          <svg class="h-4 w-4 transition group-hover:translate-x-0.5" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </span>
+      </a>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="glow relative overflow-hidden bg-ink py-24 md:py-28">
+    <div class="relative mx-auto max-w-3xl px-6 text-center">
+      <h2 class="text-3xl font-extrabold tracking-tight text-white md:text-5xl">
+        Let's find your quick wins.
+      </h2>
+      <p class="mx-auto mt-5 max-w-xl text-lg text-white/70">
+        Book the AI Opportunity Audit and in 60 minutes we'll map exactly where
+        AI can save your business time and money, with a clear plan to act on it.
+      </p>
+      <div class="mt-9 flex flex-col items-center justify-center gap-3 sm:flex-row">
+        <a
+          href={SITE.bookingUrl.startsWith("#") ? `/${SITE.bookingUrl}` : SITE.bookingUrl}
+          class="inline-flex items-center justify-center gap-2 rounded-full bg-gradient-to-r from-brand to-brand-bright px-7 py-3.5 text-base font-semibold text-white shadow-xl shadow-brand/20 transition hover:opacity-95"
+        >
+          Book the audit
+          <svg class="h-4 w-4" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+        <a
+          href="/contact"
+          class="inline-flex items-center justify-center gap-2 rounded-full border border-white/20 px-7 py-3.5 text-base font-semibold text-white transition hover:bg-white/10"
+        >
+          Send me a message
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="bg-ink-soft py-12 text-white/60">
+    <div class="mx-auto flex max-w-6xl flex-col items-center justify-between gap-6 px-6 sm:flex-row">
+      <div class="flex items-center text-white">
+        <div>
+          <img src="/logo.png" alt={SITE.brand} class="h-12 w-auto" />
+          <p class="mt-2 text-xs leading-tight text-white/50">{SITE.role}</p>
+        </div>
+      </div>
+      <nav class="flex gap-6 text-sm">
+        <a href="/#audit" class="transition hover:text-white">The Audit</a>
+        <a href="/search-visibility" class="transition hover:text-white">Search &amp; Visibility</a>
+        <a href="/about" class="transition hover:text-white">About</a>
+        <a href="/contact" class="transition hover:text-white">Contact</a>
+      </nav>
+    </div>
+    <p class="mt-8 text-center text-xs text-white/40">
+      © {new Date().getFullYear()} {SITE.brand}. {SITE.location}.
+    </p>
+  </footer>
+</Layout>
