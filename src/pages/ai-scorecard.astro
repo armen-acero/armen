@@ -1,0 +1,414 @@
+---
+import Layout from "../layouts/Layout.astro";
+import { SITE } from "../config";
+
+// Each process question: options carry `hrs` = hours/week a business of this
+// type could realistically reclaim, and a short label. Last question sizes the
+// team to scale the estimate. Kept deliberately conservative.
+const questions = [
+  {
+    id: "admin",
+    q: "How does your team handle repetitive admin, like data entry and copying info between tools?",
+    options: [
+      { label: "All by hand, every day", hrs: 5 },
+      { label: "Some tools, but lots of manual work", hrs: 2 },
+      { label: "Mostly automated already", hrs: 0 },
+    ],
+  },
+  {
+    id: "leads",
+    q: "How do you follow up with leads and keep your CRM up to date?",
+    options: [
+      { label: "Manually, and things slip through", hrs: 4 },
+      { label: "Partly automated, partly manual", hrs: 1.5 },
+      { label: "Automated follow-ups already running", hrs: 0 },
+    ],
+  },
+  {
+    id: "support",
+    q: "How do you answer the same customer questions over and over?",
+    options: [
+      { label: "We type out replies every time", hrs: 5 },
+      { label: "We reuse templates but still by hand", hrs: 2 },
+      { label: "Mostly handled automatically", hrs: 0 },
+    ],
+  },
+  {
+    id: "content",
+    q: "How do you create and repurpose marketing content?",
+    options: [
+      { label: "From scratch, manually, every time", hrs: 4 },
+      { label: "Some reuse, but it's slow", hrs: 1.5 },
+      { label: "Streamlined with AI / systems", hrs: 0 },
+    ],
+  },
+  {
+    id: "docs",
+    q: "How do you process documents like invoices, contracts or intake forms?",
+    options: [
+      { label: "Read and re-key them one by one", hrs: 3 },
+      { label: "Some shortcuts, mostly manual", hrs: 1 },
+      { label: "Extracted automatically", hrs: 0 },
+    ],
+  },
+  {
+    id: "reporting",
+    q: "How do you pull data together for reports and updates?",
+    options: [
+      { label: "Copy-paste from several places", hrs: 3 },
+      { label: "Half-automated spreadsheets", hrs: 1 },
+      { label: "Auto-generated reports", hrs: 0 },
+    ],
+  },
+  {
+    id: "scheduling",
+    q: "How do you handle scheduling, reminders and coordination?",
+    options: [
+      { label: "Back-and-forth by hand", hrs: 2 },
+      { label: "Some tools, some chasing", hrs: 0.5 },
+      { label: "Fully automated", hrs: 0 },
+    ],
+  },
+  {
+    id: "team",
+    q: "Roughly how many people in your business do this kind of repetitive work?",
+    isTeam: true,
+    options: [
+      { label: "Just 1 to 2", mult: 1 },
+      { label: "3 to 5", mult: 1.8 },
+      { label: "6 to 10", mult: 2.8 },
+      { label: "More than 10", mult: 4 },
+    ],
+  },
+];
+
+// Assumed loaded cost per hour of staff time used for the £ estimate.
+const HOURLY_RATE = 25;
+---
+
+<Layout
+  title={`Free AI Opportunity Scorecard | ${SITE.brand}`}
+  description="Answer 8 quick questions and get an instant estimate of how many hours and how much money your business is losing to work AI could automate. Free, takes 2 minutes."
+>
+  <!-- NAV -->
+  <header class="absolute inset-x-0 top-0 z-30">
+    <nav class="mx-auto flex max-w-6xl items-center justify-between px-6 py-5">
+      <a href="/" class="flex items-center text-white">
+        <img src="/logo.png" alt={SITE.brand} class="h-12 w-auto sm:h-14" />
+      </a>
+      <div class="hidden items-center gap-8 text-sm font-medium text-white/70 md:flex">
+        <a href="/#audit" class="transition hover:text-white">The Audit</a>
+        <a href="/#process" class="transition hover:text-white">Process</a>
+        <a href="/search-visibility" class="transition hover:text-white">Search Visibility</a>
+        <a href="/#faq" class="transition hover:text-white">FAQ</a>
+      </div>
+      <a
+        href={SITE.bookingUrl}
+        class="rounded-full bg-white px-5 py-2.5 text-sm font-semibold text-ink shadow-lg shadow-black/20 transition hover:bg-white/90"
+        >Book the audit</a
+      >
+    </nav>
+  </header>
+
+  <!-- HERO + QUIZ -->
+  <section id="top" class="glow relative overflow-hidden bg-ink">
+    <div class="relative mx-auto max-w-3xl px-6 pb-24 pt-36 text-center md:pb-28 md:pt-44">
+      <span
+        class="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-4 py-1.5 text-xs font-medium text-white/80 backdrop-blur"
+      >
+        <span class="h-1.5 w-1.5 rounded-full bg-accent"></span>
+        Free · Takes 2 minutes
+      </span>
+      <h1 class="mt-6 text-4xl font-extrabold leading-[1.05] tracking-tight text-white sm:text-5xl">
+        The AI Opportunity <span class="gradient-text">Scorecard</span>
+      </h1>
+      <p class="mx-auto mt-5 max-w-xl text-lg leading-relaxed text-white/70">
+        Answer 8 quick questions about how your business runs. I'll show you
+        roughly how many hours and how much money you're losing to work AI
+        could handle, and where to start.
+      </p>
+
+      <!-- Quiz card -->
+      <div
+        id="quiz"
+        class="mx-auto mt-10 max-w-xl rounded-3xl border border-white/10 bg-white p-6 text-left shadow-2xl shadow-black/40 sm:p-8"
+      >
+        <!-- progress -->
+        <div id="progress-wrap" class="mb-6">
+          <div class="flex items-center justify-between text-xs font-medium text-slate-400">
+            <span id="progress-label">Question 1 of {questions.length}</span>
+            <span id="progress-pct">0%</span>
+          </div>
+          <div class="mt-2 h-1.5 w-full overflow-hidden rounded-full bg-slate-100">
+            <div id="progress-bar" class="h-full w-0 rounded-full bg-gradient-to-r from-brand to-accent transition-all duration-300"></div>
+          </div>
+        </div>
+
+        <!-- question slot -->
+        <div id="question-slot"></div>
+
+        <!-- nav buttons -->
+        <div id="quiz-nav" class="mt-7 flex items-center justify-between">
+          <button
+            id="back-btn"
+            type="button"
+            class="invisible text-sm font-semibold text-slate-400 transition hover:text-slate-600"
+          >&larr; Back</button>
+          <span class="text-xs text-slate-400">Tap an answer to continue</span>
+        </div>
+
+        <!-- RESULT (hidden until finished) -->
+        <div id="result" class="hidden">
+          <p class="text-sm font-semibold uppercase tracking-widest text-brand" id="result-band">High automation potential</p>
+          <h2 class="mt-2 text-2xl font-bold tracking-tight text-ink">
+            You could be reclaiming
+            <span id="result-hours" class="text-brand">120 hours</span>
+            a month.
+          </h2>
+          <p class="mt-3 leading-relaxed text-slate-600" id="result-money">
+            That's roughly <strong class="font-semibold text-ink">£3,000 a month</strong>
+            (about <span class="whitespace-nowrap">£36,000 a year</span>) in time
+            spent on work AI could take off your plate.
+          </p>
+          <p class="mt-2 text-xs text-slate-400">
+            A rough estimate based on your answers, at an assumed £{HOURLY_RATE}/hour of staff time. Your real number is what the audit pins down.
+          </p>
+
+          <!-- Email capture gate -->
+          <form id="lead-form" class="mt-6 rounded-2xl border border-slate-200 bg-slate-50 p-5">
+            <p class="font-semibold text-ink">Get your full breakdown</p>
+            <p class="mt-1 text-sm text-slate-500">
+              I'll email your scorecard plus a short list of the quick wins most relevant to your answers.
+            </p>
+            <div class="mt-4 flex flex-col gap-3 sm:flex-row">
+              <input
+                id="email-input"
+                name="email_address"
+                type="email"
+                required
+                placeholder="you@company.com"
+                class="w-full flex-1 rounded-full border border-slate-300 bg-white px-5 py-3 text-sm text-ink outline-none transition focus:border-brand focus:ring-2 focus:ring-brand/20"
+              />
+              <button
+                type="submit"
+                class="inline-flex items-center justify-center gap-2 rounded-full bg-gradient-to-r from-brand to-brand-bright px-6 py-3 text-sm font-semibold text-white shadow-lg shadow-brand/20 transition hover:opacity-95"
+              >
+                Send it to me
+              </button>
+            </div>
+            <p class="mt-2 text-xs text-slate-400">No spam. Unsubscribe anytime.</p>
+          </form>
+
+          <!-- success state -->
+          <div id="lead-success" class="mt-6 hidden rounded-2xl border border-brand/20 bg-brand/5 p-5">
+            <p class="font-semibold text-ink">Done. Check your inbox shortly.</p>
+            <p class="mt-1 text-sm text-slate-600">
+              Want the full picture, live? The audit turns this estimate into a concrete, prioritised plan.
+            </p>
+          </div>
+
+          <a
+            href={SITE.bookingUrl}
+            class="mt-5 flex items-center justify-center gap-2 rounded-full bg-ink px-6 py-3.5 text-sm font-semibold text-white transition hover:bg-ink-soft"
+          >
+            Book your AI Opportunity Audit
+            <svg class="h-4 w-4" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+          <button
+            id="restart-btn"
+            type="button"
+            class="mt-3 w-full text-center text-xs font-medium text-slate-400 transition hover:text-slate-600"
+          >Start over</button>
+        </div>
+      </div>
+
+      <p class="mt-6 text-sm text-white/50">
+        Prefer to skip straight to it? <a href={SITE.bookingUrl} class="font-medium text-white/80 underline">Book the audit &rarr;</a>
+      </p>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="bg-ink-soft py-12 text-white/60">
+    <div class="mx-auto flex max-w-6xl flex-col items-center justify-between gap-6 px-6 sm:flex-row">
+      <div class="flex items-center text-white">
+        <div>
+          <img src="/logo.png" alt={SITE.brand} class="h-12 w-auto" />
+          <p class="mt-2 text-xs leading-tight text-white/50">{SITE.role}</p>
+        </div>
+      </div>
+      <nav class="flex gap-6 text-sm">
+        <a href="/#audit" class="transition hover:text-white">The Audit</a>
+        <a href="/search-visibility" class="transition hover:text-white">Search &amp; Visibility</a>
+        <a href="/automation-prompts" class="transition hover:text-white">Free Prompts</a>
+        <a href={`mailto:${SITE.email}`} class="transition hover:text-white">Contact</a>
+      </nav>
+    </div>
+    <p class="mt-8 text-center text-xs text-white/40">
+      © {new Date().getFullYear()} {SITE.brand}. {SITE.location}.
+    </p>
+  </footer>
+
+  <script define:vars={{ questions, HOURLY_RATE, formAction: SITE.emailFormAction }}>
+    (() => {
+      const slot = document.getElementById("question-slot");
+      const progressLabel = document.getElementById("progress-label");
+      const progressPct = document.getElementById("progress-pct");
+      const progressBar = document.getElementById("progress-bar");
+      const progressWrap = document.getElementById("progress-wrap");
+      const quizNav = document.getElementById("quiz-nav");
+      const backBtn = document.getElementById("back-btn");
+      const result = document.getElementById("result");
+      const total = questions.length;
+
+      const answers = new Array(total).fill(null);
+      let current = 0;
+
+      function renderQuestion() {
+        const qd = questions[current];
+        progressWrap.classList.remove("hidden");
+        quizNav.classList.remove("hidden");
+        result.classList.add("hidden");
+        slot.classList.remove("hidden");
+
+        const pct = Math.round((current / total) * 100);
+        progressLabel.textContent = `Question ${current + 1} of ${total}`;
+        progressPct.textContent = `${pct}%`;
+        progressBar.style.width = `${pct}%`;
+        backBtn.classList.toggle("invisible", current === 0);
+
+        slot.innerHTML =
+          `<p class="text-lg font-semibold leading-snug text-ink">${qd.q}</p>` +
+          `<div class="mt-5 space-y-3">` +
+          qd.options
+            .map((opt, i) => {
+              const selected = answers[current] === i;
+              return (
+                `<button type="button" data-opt="${i}" class="flex w-full items-center gap-3 rounded-xl border ${
+                  selected
+                    ? "border-brand bg-brand/5"
+                    : "border-slate-200 bg-white hover:border-brand/40"
+                } px-4 py-3.5 text-left text-sm font-medium text-ink transition">` +
+                `<span class="grid h-5 w-5 flex-none place-items-center rounded-full border-2 ${
+                  selected ? "border-brand bg-brand" : "border-slate-300"
+                }">${
+                  selected
+                    ? '<svg class="h-3 w-3 text-white" viewBox="0 0 16 16" fill="none"><path d="M3 8.5l3 3 7-7" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>'
+                    : ""
+                }</span>` +
+                `<span>${opt.label}</span>` +
+                `</button>`
+              );
+            })
+            .join("") +
+          `</div>`;
+
+        slot.querySelectorAll("[data-opt]").forEach((btn) => {
+          btn.addEventListener("click", () => {
+            answers[current] = parseInt(btn.getAttribute("data-opt"), 10);
+            if (current < total - 1) {
+              current++;
+              renderQuestion();
+            } else {
+              showResult();
+            }
+          });
+        });
+      }
+
+      function round5(n) {
+        return Math.max(0, Math.round(n / 5) * 5);
+      }
+      function round50(n) {
+        return Math.max(0, Math.round(n / 50) * 50);
+      }
+
+      function showResult() {
+        // weekly hours from process questions (all but the team sizer)
+        let weeklyHrs = 0;
+        let mult = 1;
+        questions.forEach((qd, i) => {
+          const ai = answers[i];
+          if (ai === null) return;
+          const opt = qd.options[ai];
+          if (qd.isTeam) mult = opt.mult;
+          else weeklyHrs += opt.hrs;
+        });
+
+        const monthlyHrs = round5(weeklyHrs * 4.33 * mult);
+        const monthlyCost = round50(monthlyHrs * HOURLY_RATE);
+        const yearlyCost = round50(monthlyCost * 12 / 50) * 50; // keep tidy
+
+        let band;
+        if (weeklyHrs >= 16) band = "High automation potential";
+        else if (weeklyHrs >= 8) band = "Strong automation potential";
+        else if (weeklyHrs >= 1) band = "Some automation potential";
+        else band = "You're already running lean";
+
+        const fmt = (n) => "£" + n.toLocaleString("en-GB");
+
+        document.getElementById("result-band").textContent = band;
+        document.getElementById("result-hours").textContent =
+          `${monthlyHrs} hour${monthlyHrs === 1 ? "" : "s"}`;
+
+        const moneyEl = document.getElementById("result-money");
+        if (monthlyHrs === 0) {
+          document.querySelector("#result h2").innerHTML =
+            "You're already automating most of the repetitive work.";
+          moneyEl.innerHTML =
+            "There may still be edge cases worth catching. The audit is a fast way to confirm you're not leaving anything on the table.";
+        } else {
+          document.querySelector("#result h2").innerHTML =
+            `You could be reclaiming <span class="text-brand">${monthlyHrs} hours</span> a month.`;
+          moneyEl.innerHTML =
+            `That's roughly <strong class="font-semibold text-ink">${fmt(monthlyCost)} a month</strong> ` +
+            `(about <span class="whitespace-nowrap">${fmt(yearlyCost)} a year</span>) in time ` +
+            `spent on work AI could take off your plate.`;
+        }
+
+        // swap views
+        slot.classList.add("hidden");
+        progressWrap.classList.add("hidden");
+        quizNav.classList.add("hidden");
+        progressBar.style.width = "100%";
+        result.classList.remove("hidden");
+      }
+
+      backBtn.addEventListener("click", () => {
+        if (current > 0) {
+          current--;
+          renderQuestion();
+        }
+      });
+
+      document.getElementById("restart-btn").addEventListener("click", () => {
+        answers.fill(null);
+        current = 0;
+        document.getElementById("lead-form").classList.remove("hidden");
+        document.getElementById("lead-success").classList.add("hidden");
+        renderQuestion();
+      });
+
+      // Email capture
+      const leadForm = document.getElementById("lead-form");
+      leadForm.addEventListener("submit", async (e) => {
+        e.preventDefault();
+        const email = document.getElementById("email-input").value.trim();
+        if (!email) return;
+        if (formAction) {
+          try {
+            const fd = new FormData();
+            fd.append("email_address", email);
+            await fetch(formAction, { method: "POST", body: fd, mode: "no-cors" });
+          } catch (_) {
+            /* swallow — show success regardless so the user isn't blocked */
+          }
+        }
+        leadForm.classList.add("hidden");
+        document.getElementById("lead-success").classList.remove("hidden");
+      });
+
+      renderQuestion();
+    })();
+  </script>
+</Layout>

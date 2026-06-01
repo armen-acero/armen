@@ -16,4 +16,11 @@ export const SITE = {
   // Find it on the event type's "Copy link" button. Connect Google Calendar +
   // Stripe inside your Cal.com account; no keys live in this site.
   calLink: "armen-andonian-ms9g8r/30min",
+
+  // --- Lead-magnet email capture (scorecard + prompt pack) ---
+  // Paste your Kit (ConvertKit) form action URL here to start collecting emails.
+  // In Kit: your form -> Embed -> HTML -> copy the URL inside <form action="...">.
+  // It looks like "https://app.kit.com/forms/1234567/subscriptions".
+  // Leave empty ("") to run in demo mode: the form works visually but stores nothing.
+  emailFormAction: "",
 } as const;
