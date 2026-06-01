@@ -24,4 +24,11 @@ export const SITE = {
   // Get a key free at https://web3forms.com (no login, just enter your email).
   // Leave empty ("") to disable sending (the form still works visually).
   web3formsKey: "d12587ab-b5db-463b-8703-939b1aa00987",
+
+  // --- Google Analytics (GA4) ---
+  // Your GA4 Measurement ID in the form "G-XXXXXXXXXX". Find it in GA4 under
+  // Admin → Data Streams → (your web stream) → Measurement ID.
+  // Loaded only on the live site (not during local `npm run dev`), so your own
+  // dev traffic isn't counted. Leave empty ("") to disable analytics entirely.
+  gaId: "G-YEKKRRCGMK",
 } as const;

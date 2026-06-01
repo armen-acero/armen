@@ -129,6 +129,19 @@ const jsonLd = {
       type="application/ld+json"
       set:html={JSON.stringify(jsonLd)}
     />
+
+    <!-- Google Analytics (GA4) — live site only; see gaId in config.ts -->
+    {SITE.gaId && import.meta.env.PROD && (
+      <Fragment>
+        <script is:inline async src={`https://www.googletagmanager.com/gtag/js?id=${SITE.gaId}`}></script>
+        <script is:inline set:html={`
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', '${SITE.gaId}');
+        `} />
+      </Fragment>
+    )}
   </head>
   <body class="bg-paper text-ink antialiased">
     <slot />
