@@ -207,6 +207,16 @@ import { SITE } from "../config";
         const data = await res.json().catch(() => ({}));
         if (!res.ok || !data.success) throw new Error(data.message || "Send failed");
 
+        // Send the enquirer an automated thank-you (via Resend). Best effort:
+        // you're still notified via Web3Forms even if this doesn't fire.
+        try {
+          await fetch("/api/contact", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ name, email }),
+          });
+        } catch (_) {}
+
         form.classList.add("hidden");
         document.getElementById("contact-success").classList.remove("hidden");
       } catch (err) {
