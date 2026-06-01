@@ -132,5 +132,36 @@ const jsonLd = {
   </head>
   <body class="bg-paper text-ink antialiased">
     <slot />
+
+    <!-- Scroll to top -->
+    <button
+      id="scroll-top"
+      type="button"
+      aria-label="Scroll back to top"
+      class="fixed bottom-6 right-6 z-50 grid h-12 w-12 translate-y-4 place-items-center rounded-full bg-ink text-white opacity-0 shadow-lg shadow-black/20 transition-all duration-300 hover:bg-brand pointer-events-none"
+    >
+      <svg class="h-5 w-5" viewBox="0 0 20 20" fill="none">
+        <path d="M10 16V4M5 9l5-5 5 5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" />
+      </svg>
+    </button>
+
+    <script is:inline>
+      (() => {
+        const btn = document.getElementById("scroll-top");
+        if (!btn) return;
+        const show = () => {
+          if (window.scrollY > 400) {
+            btn.classList.remove("opacity-0", "translate-y-4", "pointer-events-none");
+          } else {
+            btn.classList.add("opacity-0", "translate-y-4", "pointer-events-none");
+          }
+        };
+        btn.addEventListener("click", () => {
+          window.scrollTo({ top: 0, behavior: "smooth" });
+        });
+        window.addEventListener("scroll", show, { passive: true });
+        show();
+      })();
+    </script>
   </body>
 </html>
