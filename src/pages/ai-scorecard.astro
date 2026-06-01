@@ -438,6 +438,23 @@ const HOURLY_RATE = 25;
           }
         }
 
+        // Send the lead an automated thank-you with their result (via Resend).
+        try {
+          await fetch("/api/scorecard", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+              email,
+              band: resultData.band,
+              monthlyHrs: resultData.monthlyHrs,
+              monthlyCost: resultData.monthlyCost,
+              yearlyCost: resultData.yearlyCost,
+            }),
+          });
+        } catch (_) {
+          /* swallow — you're still notified via Web3Forms regardless */
+        }
+
         leadForm.classList.add("hidden");
         document.getElementById("lead-success").classList.remove("hidden");
       });
