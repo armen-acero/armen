@@ -201,9 +201,10 @@ const HOURLY_RATE = 25;
 
           <!-- success state -->
           <div id="lead-success" class="mt-6 hidden rounded-2xl border border-brand/20 bg-brand/5 p-5">
-            <p class="font-semibold text-ink">Done. Check your inbox shortly.</p>
+            <p class="font-semibold text-ink">Thanks, I've got your details.</p>
             <p class="mt-1 text-sm text-slate-600">
-              Want the full picture, live? The audit turns this estimate into a concrete, prioritised plan.
+              I'll be in touch shortly with your full breakdown and the quick wins
+              most relevant to your answers. Want the full picture sooner? Book the audit below.
             </p>
           </div>
 
@@ -248,7 +249,7 @@ const HOURLY_RATE = 25;
     </p>
   </footer>
 
-  <script define:vars={{ questions, HOURLY_RATE, formAction: SITE.emailFormAction }}>
+  <script define:vars={{ questions, HOURLY_RATE, web3formsKey: SITE.web3formsKey }}>
     (() => {
       const slot = document.getElementById("question-slot");
       const progressLabel = document.getElementById("progress-label");
@@ -262,6 +263,7 @@ const HOURLY_RATE = 25;
 
       const answers = new Array(total).fill(null);
       let current = 0;
+      let resultData = {};
 
       function renderQuestion() {
         const qd = questions[current];
@@ -346,6 +348,8 @@ const HOURLY_RATE = 25;
 
         const fmt = (n) => "£" + n.toLocaleString("en-GB");
 
+        resultData = { weeklyHrs, monthlyHrs, monthlyCost, yearlyCost, band };
+
         document.getElementById("result-band").textContent = band;
         document.getElementById("result-hours").textContent =
           `${monthlyHrs} hour${monthlyHrs === 1 ? "" : "s"}`;
@@ -388,21 +392,52 @@ const HOURLY_RATE = 25;
         renderQuestion();
       });
 
-      // Email capture
+      // Email capture -> notify via Web3Forms (answers + result emailed to you)
       const leadForm = document.getElementById("lead-form");
       leadForm.addEventListener("submit", async (e) => {
         e.preventDefault();
         const email = document.getElementById("email-input").value.trim();
         if (!email) return;
-        if (formAction) {
+
+        if (web3formsKey) {
+          // Build a readable summary of every answer.
+          const answerLines = questions
+            .map((qd, i) => {
+              const ai = answers[i];
+              const label = ai === null ? "(not answered)" : qd.options[ai].label;
+              return `${i + 1}. ${qd.q}\n   -> ${label}`;
+            })
+            .join("\n\n");
+
+          const fmt = (n) => "£" + (n || 0).toLocaleString("en-GB");
+          const payload = {
+            access_key: web3formsKey,
+            subject: `New AI Scorecard lead: ${email}`,
+            from_name: "AI Opportunity Scorecard",
+            email: email, // becomes the reply-to so you can reply directly
+            "Lead email": email,
+            "Potential band": resultData.band || "",
+            "Estimated hours/month": resultData.monthlyHrs ?? "",
+            "Estimated cost/month": fmt(resultData.monthlyCost),
+            "Estimated cost/year": fmt(resultData.yearlyCost),
+            "Their answers": answerLines,
+            botcheck: "",
+          };
+
           try {
-            const fd = new FormData();
-            fd.append("email_address", email);
-            await fetch(formAction, { method: "POST", body: fd, mode: "no-cors" });
+            await fetch("https://api.web3forms.com/submit", {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json",
+                Accept: "application/json",
+              },
+              body: JSON.stringify(payload),
+            });
           } catch (_) {
             /* swallow — show success regardless so the user isn't blocked */
           }
         }
+
         leadForm.classList.add("hidden");
         document.getElementById("lead-success").classList.remove("hidden");
       });

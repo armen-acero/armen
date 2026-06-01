@@ -17,10 +17,11 @@ export const SITE = {
   // Stripe inside your Cal.com account; no keys live in this site.
   calLink: "armen-andonian-ms9g8r/30min",
 
-  // --- Lead-magnet email capture (scorecard + prompt pack) ---
-  // Paste your Kit (ConvertKit) form action URL here to start collecting emails.
-  // In Kit: your form -> Embed -> HTML -> copy the URL inside <form action="...">.
-  // It looks like "https://app.kit.com/forms/1234567/subscriptions".
-  // Leave empty ("") to run in demo mode: the form works visually but stores nothing.
-  emailFormAction: "",
+  // --- Scorecard lead notifications (Web3Forms) ---
+  // When someone completes the AI Opportunity Scorecard and enters their email,
+  // their answers + result are emailed to you via Web3Forms. This access key is
+  // tied to your email and is safe to expose in front-end code.
+  // Get a key free at https://web3forms.com (no login, just enter your email).
+  // Leave empty ("") to disable sending (the form still works visually).
+  web3formsKey: "d12587ab-b5db-463b-8703-939b1aa00987",
 } as const;
