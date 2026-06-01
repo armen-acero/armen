@@ -30,5 +30,5 @@ export const SITE = {
   // Admin → Data Streams → (your web stream) → Measurement ID.
   // Loaded only on the live site (not during local `npm run dev`), so your own
   // dev traffic isn't counted. Leave empty ("") to disable analytics entirely.
-  gaId: "G-QYDEDYXC1L",
+  gaId: "G-K256NTXMC4",
 } as const;
