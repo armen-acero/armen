@@ -1,43 +1,44 @@
-# Astro Starter Kit: Minimal
+# Armen Andonian — AI Opportunity Audit landing page
 
-```sh
-npm create astro@latest -- --template minimal
+Astro + Tailwind CSS v4 static site. Auto-deploys to **https://armenandonian.com** via Vercel on every push to `main`.
+
+## Edit from any computer
+
+1. Install **Node.js**, **git**, and **Claude Code**.
+2. Log into GitHub as `armen-acero`:
+   ```bash
+   gh auth login          # GitHub.com → HTTPS → web browser → armen-acero
+   gh auth setup-git
+   ```
+3. Clone and install:
+   ```bash
+   git clone https://github.com/armen-acero/armen.git ai-automation-consulting
+   cd ai-automation-consulting
+   npm install
+   ```
+
+## Make a change
+
+```bash
+git pull                       # always pull first
+npm run dev                    # preview locally at localhost:4321
+# ...edit with Claude Code...
+git add -A && git commit -m "describe your change"
+git push                       # -> Vercel auto-deploys to armenandonian.com
 ```
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+## If an auto-deploy ever hangs
 
-## 🚀 Project Structure
+Fall back to a prebuilt deploy:
 
-Inside of your Astro project, you'll see the following folders and files:
-
-```text
-/
-├── public/
-├── src/
-│   └── pages/
-│       └── index.astro
-└── package.json
+```bash
+npx vercel build --prod --yes && npx vercel deploy --prebuilt --prod --yes
 ```
 
-Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
+## Key files
 
-There's nothing special about `src/components/`, but that's where we like to put any Astro/React/Vue/Svelte/Preact components.
-
-Any static assets, like images, can be placed in the `public/` directory.
-
-## 🧞 Commands
-
-All commands are run from the root of the project, from a terminal:
-
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:4321`      |
-| `npm run build`           | Build your production site to `./dist/`          |
-| `npm run preview`         | Preview your build locally, before deploying     |
-| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help` | Get help using the Astro CLI                     |
-
-## 👀 Want to learn more?
-
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+- `src/pages/index.astro` — the entire landing page (copy, sections, layout)
+- `src/layouts/Layout.astro` — `<head>`, SEO meta, FAQ JSON-LD
+- `src/styles/global.css` — Tailwind theme tokens and custom styles
+- `src/config.ts` — site brand, URL, email, booking link
+- `public/logo.png` — signature logo
