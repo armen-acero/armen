@@ -325,7 +325,7 @@ const faqs = [
             knowing how to keep going yourself. Low risk, fixed fee, no obligation to
             go further.
           </p>
-          <p class="mt-6 text-sm font-semibold uppercase tracking-widest text-brand">What's included</p>
+          <p class="mt-6 text-sm font-semibold uppercase tracking-widest text-brand">You walk away with</p>
           <ul class="mt-4 space-y-4">
             {
               [
@@ -365,21 +365,17 @@ const faqs = [
         <div class="relative">
           <div class="glow absolute -inset-4 rounded-3xl opacity-40 blur-2xl"></div>
           <div class="relative rounded-3xl border border-slate-200 bg-white p-8 shadow-xl">
-            <p class="text-xs font-semibold uppercase tracking-widest text-slate-400">You walk away with</p>
+            <p class="text-xs font-semibold uppercase tracking-widest text-slate-400">How it works</p>
             <div class="mt-5 space-y-4">
               {
-                [
-                  ["Opportunity map", "Every automation candidate, scored by impact and effort."],
-                  ["Prioritised roadmap", "A sequenced plan: what to build first, second, third."],
-                  ["Tool shortlist", "The exact stack to make it happen, no guesswork."],
-                ].map(([t, d], i) => (
+                process.map((p, i) => (
                   <div class="flex gap-4 rounded-xl border border-slate-100 bg-slate-50 p-4">
                     <span class="grid h-9 w-9 flex-none place-items-center rounded-lg bg-ink text-sm font-bold text-white">
                       {i + 1}
                     </span>
                     <div>
-                      <p class="font-semibold text-ink">{t}</p>
-                      <p class="mt-0.5 text-sm text-slate-500">{d}</p>
+                      <p class="font-semibold text-ink">{p.t}</p>
+                      <p class="mt-0.5 text-sm text-slate-500">{p.d}</p>
                     </div>
                   </div>
                 ))
@@ -387,29 +383,6 @@ const faqs = [
             </div>
           </div>
         </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- PROCESS -->
-  <section id="process" class="bg-ink py-20 text-white md:py-28">
-    <div class="mx-auto max-w-6xl px-6">
-      <div class="max-w-2xl">
-        <p class="text-sm font-semibold uppercase tracking-widest text-accent">How the audit works</p>
-        <h2 class="mt-3 text-3xl font-bold tracking-tight md:text-4xl">
-          Four steps from your processes to working automation.
-        </h2>
-      </div>
-      <div class="mt-14 grid gap-10 sm:grid-cols-2 lg:grid-cols-4">
-        {
-          process.map((p) => (
-            <div class="group relative">
-              <span class="text-5xl font-extrabold text-white/10 transition-colors duration-200 group-hover:text-white">{p.n}</span>
-              <h3 class="mt-2 text-lg font-semibold text-white">{p.t}</h3>
-              <p class="mt-2 text-sm leading-relaxed text-white/60">{p.d}</p>
-            </div>
-          ))
-        }
       </div>
     </div>
   </section>
