@@ -75,6 +75,24 @@ const credibility = [
   "Practical AI implementations, not theoretical consulting",
 ];
 
+const testimonials = [
+  {
+    quote: "Working with Armen has shown me what is possible with tools like Airtable, Make.com and Claude Code for marketing within the music industry. His AI automation expertise made it possible to create engaging social media content consistently without sacrificing quality. He understands both the technical and creative sides of content marketing, which is a rare combination.",
+    name: "Divad Portillo",
+    company: "Music Producer & Instagram Creator",
+  },
+  {
+    quote: "Armen has a deep understanding of AI automation and how to leverage the right tools to create engaging content. His work building automated UGC content creation pipelines with Claude Code and Make.com was both technical and strategic. He has a unique ability to turn complex workflows into scalable AI systems that increase output, reduce manual effort, and generate results.",
+    name: "Cormac Guerin",
+    company: "Former Google",
+  },
+  {
+    quote: "Armen knows how to build AI systems that create powerful SEO and business process automation workflows. He has been a huge asset to our company in helping us improve our organic search visibility while implementing systems that streamlined internal operations and reduced manual work. Working with him enabled us to scale faster, improve efficiency, and create processes that support long-term growth.",
+    name: "Manuel Peña",
+    company: "Founder, Perspective AI",
+  },
+];
+
 const faqs = [
   {
     q: "What is an AI Opportunity Audit?",
@@ -505,6 +523,40 @@ const faqs = [
             ))
           }
         </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- TESTIMONIALS -->
+  <section id="testimonials" class="border-t border-slate-200 bg-slate-50 py-20 md:py-28">
+    <div class="mx-auto max-w-6xl px-6">
+      <div class="mx-auto max-w-2xl text-center">
+        <p class="text-sm font-semibold uppercase tracking-widest text-brand">What clients say</p>
+        <h2 class="mt-3 text-3xl font-bold tracking-tight text-ink md:text-4xl">
+          Results that speak for themselves.
+        </h2>
+      </div>
+      <div class="mt-12 grid gap-5 grid-cols-1 sm:grid-cols-2 md:grid-cols-3">
+        {
+          testimonials.map((t) => (
+            <figure class="flex flex-col rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
+              <div class="flex gap-1" aria-hidden="true">
+                {[0, 1, 2, 3, 4].map(() => (
+                  <svg class="h-4 w-4 text-brand" viewBox="0 0 20 20" fill="currentColor">
+                    <path d="M10 1.5l2.6 5.3 5.9.9-4.3 4.1 1 5.8L10 14.9l-5.2 2.7 1-5.8L1.5 7.7l5.9-.9z" />
+                  </svg>
+                ))}
+              </div>
+              <blockquote class="mt-4 flex-1 leading-relaxed text-slate-700">
+                &ldquo;{t.quote}&rdquo;
+              </blockquote>
+              <figcaption class="mt-5 border-t border-slate-100 pt-4">
+                <p class="text-sm font-semibold text-ink">{t.name}</p>
+                <p class="text-sm text-slate-500">{t.company}</p>
+              </figcaption>
+            </figure>
+          ))
+        }
       </div>
     </div>
   </section>
