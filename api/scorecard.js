@@ -44,9 +44,9 @@ export default async function handler(req, res) {
 
   const resultBlock = hasNumbers
     ? `
-      <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="margin:24px 0;border-collapse:separate;">
+      <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="margin:12px 0;border-collapse:separate;">
         <tr>
-          <td style="background:#f8fafc;border:1px solid #e2e8f0;border-radius:16px;padding:24px;">
+          <td style="background:#f8fafc;border:1px solid #e2e8f0;border-radius:16px;padding:18px;">
             <p style="margin:0;font-size:13px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:#4f46e5;">Your estimate</p>
             <p style="margin:10px 0 0;font-size:22px;font-weight:800;color:#0a0e1a;line-height:1.3;">
               Around ${monthlyHrs} hours a month
@@ -63,41 +63,32 @@ export default async function handler(req, res) {
 
   const html = `
   <div style="font-family:-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;max-width:560px;margin:0 auto;padding:8px;color:#0a0e1a;">
-    <p style="font-size:16px;line-height:1.6;margin:0 0 16px;">Hi,</p>
-    <p style="font-size:16px;line-height:1.6;margin:0 0 16px;">
-      Thanks for taking the AI opportunity quiz. Here's the quick version of your result.
-    </p>
+    <p style="font-size:16px;line-height:1.5;margin:0 0 4px;">Hi, here's your AI Opportunity Scorecard result.</p>
     ${resultBlock}
-    <p style="font-size:16px;line-height:1.6;margin:0 0 16px;">
-      That number is an estimate. The real value is knowing <em>which</em> processes to fix
-      first and what each one is actually costing you, which is exactly what the AI Opportunity
-      Audit pins down. I'll be in touch shortly with a short breakdown tailored to your answers.
+    <p style="font-size:16px;line-height:1.5;margin:0 0 16px;">
+      The real value is knowing <em>which</em> processes to fix first. That's what the AI
+      Opportunity Audit pins down, and I'll come prepared with a breakdown built from your answers.
     </p>
-    <p style="font-size:16px;line-height:1.6;margin:0 0 24px;">
-      If you'd like the full picture sooner, you can book the audit here:
-    </p>
-    <p style="margin:0 0 28px;">
+    <p style="margin:0 0 18px;">
       <a href="https://armenandonian.com/#book"
          style="display:inline-block;background:#4f46e5;color:#ffffff;text-decoration:none;font-size:15px;font-weight:600;padding:14px 24px;border-radius:9999px;">
         Book your AI Opportunity Audit
       </a>
     </p>
-    <p style="font-size:16px;line-height:1.6;margin:0 0 4px;">Armen Andonian</p>
-    <p style="font-size:13px;line-height:1.6;margin:0;color:#64748b;">
-      AI Automation &amp; Search Visibility Consultant<br/>
-      <a href="https://armenandonian.com" style="color:#4f46e5;text-decoration:none;">armenandonian.com</a>
+    <p style="font-size:14px;line-height:1.5;margin:0;color:#64748b;">
+      Armen Andonian · <a href="https://armenandonian.com" style="color:#4f46e5;text-decoration:none;">armenandonian.com</a>
     </p>
   </div>`;
 
   const text =
-    `Hi,\n\nThanks for taking the AI opportunity quiz.\n\n` +
+    `Hi, here's your AI Opportunity Scorecard result.\n\n` +
     (hasNumbers
       ? `Your estimate: around ${monthlyHrs} hours a month, roughly ${fmt(
           data.monthlyCost
         )} a month (about ${fmt(data.yearlyCost)} a year) on work AI could handle.\n\n`
       : "") +
-    `That number is an estimate. The real value is knowing which processes to fix first, which is what the AI Opportunity Audit pins down. I'll be in touch shortly with a short breakdown tailored to your answers.\n\n` +
-    `Book the audit: https://armenandonian.com/#book\n\nArmen Andonian\nAI Automation & Search Visibility Consultant\narmenandonian.com`;
+    `The real value is knowing which processes to fix first, which is what the AI Opportunity Audit pins down. Book it and I'll come prepared with a breakdown built from your answers.\n\n` +
+    `Book the audit: https://armenandonian.com/#book\n\nArmen Andonian\narmenandonian.com`;
 
   try {
     const r = await fetch("https://api.resend.com/emails", {
