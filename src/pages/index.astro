@@ -579,21 +579,20 @@ const faqs = [
       </p>
     </div>
 
-    <div class="relative mx-auto mt-12 max-w-4xl px-6">
-      <div
-        class="overflow-hidden rounded-3xl border border-white/10 bg-white p-2 shadow-2xl shadow-black/40 sm:p-4"
+    <div class="relative mx-auto mt-10 max-w-xl px-6 text-center">
+      <button
+        type="button"
+        data-cal-link={SITE.calLink}
+        data-cal-namespace="booking"
+        data-cal-config='{"layout":"month_view","theme":"light"}'
+        class="group inline-flex items-center justify-center gap-2 rounded-full bg-gradient-to-r from-brand to-brand-bright px-8 py-4 text-base font-semibold text-white shadow-xl shadow-brand/30 transition hover:opacity-95"
       >
-        <div
-          id="my-cal-inline"
-          style="width:100%;min-height:640px;overflow:auto;-webkit-overflow-scrolling:touch"
-        >
-        </div>
-      </div>
-      <p class="mt-4 text-center text-xs text-white/50">
+        Book your audit
+        <svg class="h-4 w-4 transition group-hover:translate-x-0.5" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </button>
+      <p class="mt-5 text-center text-xs text-white/50">
         Secure scheduling by Cal.com. Prefer email?
-        <a href="/contact" class="font-medium text-white/80 underline"
-          >Message me instead</a
-        >.
+        <a href="/contact" class="font-medium text-white/80 underline">Message me instead</a>.
       </p>
     </div>
   </section>
@@ -617,15 +616,12 @@ const faqs = [
       };
     })(window, "https://app.cal.com/embed/embed.js", "init");
 
-    // Lazy-load the calendar only when the booking section is near the viewport,
-    // so Cal.com's script never touches the initial page load.
-    function __loadCal() {
+    // Initialise Cal for the popup overlay. Done lazily (when the booking section
+    // nears the viewport) so Cal.com's script never touches the initial page load.
+    // The button's data-cal-link attributes open the full-screen popup on click,
+    // which scrolls natively on mobile (no trapped inner-iframe scroll).
+    function __initCal() {
       Cal("init", "booking", { origin: "https://app.cal.com" });
-      Cal.ns["booking"]("inline", {
-        elementOrSelector: "#my-cal-inline",
-        config: { layout: "month_view", useSlotsViewOnSmallScreen: "true", theme: "light" },
-        calLink: calLink,
-      });
       Cal.ns["booking"]("ui", {
         theme: "light",
         cssVarsPerTheme: { light: { "cal-brand": "#4f46e5" } },
@@ -634,19 +630,19 @@ const faqs = [
       });
     }
 
-    var __calEl = document.getElementById("my-cal-inline");
-    if (__calEl && "IntersectionObserver" in window) {
-      var __calLoaded = false;
+    var __bookEl = document.getElementById("book");
+    if (__bookEl && "IntersectionObserver" in window) {
+      var __calInit = false;
       var __calIO = new IntersectionObserver(function (entries) {
-        if (!__calLoaded && entries.some(function (e) { return e.isIntersecting; })) {
-          __calLoaded = true;
+        if (!__calInit && entries.some(function (e) { return e.isIntersecting; })) {
+          __calInit = true;
           __calIO.disconnect();
-          __loadCal();
+          __initCal();
         }
-      }, { rootMargin: "600px" });
-      __calIO.observe(__calEl);
+      }, { rootMargin: "800px" });
+      __calIO.observe(__bookEl);
     } else {
-      __loadCal();
+      __initCal();
     }
   </script>
 
