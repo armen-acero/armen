@@ -617,15 +617,32 @@ const faqs = [
       };
     })(window, "https://app.cal.com/embed/embed.js", "init");
 
-    Cal("init", "booking", { origin: "https://app.cal.com" });
+    // Lazy-load the calendar only when the booking section is near the viewport,
+    // so Cal.com's script never touches the initial page load.
+    function __loadCal() {
+      Cal("init", "booking", { origin: "https://app.cal.com" });
+      Cal.ns["booking"]("inline", {
+        elementOrSelector: "#my-cal-inline",
+        config: { layout: "month_view", useSlotsViewOnSmallScreen: "true", theme: "light" },
+        calLink: calLink,
+      });
+      Cal.ns["booking"]("ui", { hideEventTypeDetails: false, layout: "month_view" });
+    }
 
-    Cal.ns["booking"]("inline", {
-      elementOrSelector: "#my-cal-inline",
-      config: { layout: "month_view", useSlotsViewOnSmallScreen: "true", theme: "light" },
-      calLink: calLink,
-    });
-
-    Cal.ns["booking"]("ui", { hideEventTypeDetails: false, layout: "month_view" });
+    var __calEl = document.getElementById("my-cal-inline");
+    if (__calEl && "IntersectionObserver" in window) {
+      var __calLoaded = false;
+      var __calIO = new IntersectionObserver(function (entries) {
+        if (!__calLoaded && entries.some(function (e) { return e.isIntersecting; })) {
+          __calLoaded = true;
+          __calIO.disconnect();
+          __loadCal();
+        }
+      }, { rootMargin: "600px" });
+      __calIO.observe(__calEl);
+    } else {
+      __loadCal();
+    }
   </script>
 
   <!-- FAQ -->
