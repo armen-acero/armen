@@ -626,7 +626,12 @@ const faqs = [
         config: { layout: "month_view", useSlotsViewOnSmallScreen: "true", theme: "light" },
         calLink: calLink,
       });
-      Cal.ns["booking"]("ui", { hideEventTypeDetails: false, layout: "month_view" });
+      Cal.ns["booking"]("ui", {
+        theme: "light",
+        cssVarsPerTheme: { light: { "cal-brand": "#4f46e5" } },
+        hideEventTypeDetails: false,
+        layout: "month_view",
+      });
     }
 
     var __calEl = document.getElementById("my-cal-inline");
